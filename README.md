@@ -1,23 +1,15 @@
 # 207-Final-Project
 
-A description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
-a brief, high-level description of what kind of application your team is thinking of developing.
-This is mostly just so we can give you some initial feedback on whether your team might want to reconsider your project direction.
-a link to the documentation for an API your team can use related to the domain.
 
+# Description: The problem domain we want to focus on is media managing. We want to develop an application that allows users to
+store/save images, music, and other media. Our application will also allow the user to organize what they have stored
+and create groups of media, adding new media from the web through an API.
 
+# Link to API: https://apilayer.com/marketplace/image_upload-api
 
+# Screenshot of trying to use API https://gyazo.com/d850e78f7cbc6a5f579cf0e9eb94ee91
 
-a screenshot of using a tool to try out the API (like https://www.postman.com/Links to an external site. or https://hoppscotch.io/Links to an external site.Links to an external site.)
-example output of running your Java code (see below).
-
-
-a list of any technical problems blocking progress (if any)
-please don't hesitate to ask such questions on Piazza too of course.
-Java code:
-
-
-## Java Code ##
+## Example of Java Code ##
 
 import requests
 
