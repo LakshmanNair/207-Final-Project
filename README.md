@@ -17,7 +17,7 @@ Our example code is in testfile.java
 
 ####
 
-The output of running this program is:
+The output of running this program through the API is:
 
 {
 "height": 408,
@@ -32,9 +32,8 @@ The output of running this program is:
 "width": 612
 }
 
+We tried to replicate this on a java file, but we could not do this as we do not have the http3 library imported. To do
+this, we need to implement other structures including new XML files, which we were not sure how to do.
 
-
-Some technical problems that we were experiencing are related to the website that we are accessing the API on.
-They sometimes ask for information that we do not know such as specification of image delay in the optimization process 
-or the ID_size, for certain images.
+Some technical problems that we were experiencing are that we do not have some of the libraries needed to import like http3.
 It may be easier to switch APIs, especially since there are many options for our given problem domain.
