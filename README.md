@@ -12,11 +12,11 @@ a screenshot of using a tool to try out the API (like https://www.postman.com/Li
 example output of running your Java code (see below).
 
 
-a list of any technical problems blocking progress (if any)
-please don't hesitate to ask such questions on Piazza too of course.
-Java code:
+Some technical problems that we were experiencing are related to the website that we are accessing the API on.
+They ask for information that we do not know such as specification of image delay in the optimization process or the ID_size.
+It may be easier to switch APIs, especially since there are many options for our given problem domain.
 
-
+Here is the code that we generated from API Layer after obtaining a token for this API.
 ## Java Code ##
 
 import requests
@@ -37,4 +37,6 @@ result = response.text
 
 The output of running this program is: {"error":{"code":"validation_error","message":"Request failed with validation error","context":{"delay":["The delay field must be true or false."],"callback":["The callback must be a valid URL."],"lost":["The lost field must be true or false."],"enhance":["The enhance field must be true or false."]}}}
 
-This is because we are unable to satisfy all the requirements they provide us with when generating the image.
+This is because we are unable to satisfy all the requirements to generate the image. They ask for information that we are unsure
+about, such as specification for an image delay in the optimization process or the ID_size. We inputted what we could but ultimately
+we could not get the API call to work. We will likely switch APIs if these problems persist.
