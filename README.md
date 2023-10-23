@@ -1,39 +1,28 @@
-# 207-Final-Project
+The broad purpose of the proposed software is to develop a chat system where users can send and receive messages, create group chats, edit messages, and search through messages.
 
-# Description: 
-The problem domain we want to focus on is media managing. We want to develop an application that allows users to
-store/save images, music, and other media. Our application will also allow the user to organize what they have stored
-and create groups of media, adding new media from the web through an API.
+Software Specification:
 
-# Link to API: https://apilayer.com/marketplace/image_upload-api
+The program should have features relating to user registration, creating and sending messages, and storing/searching for messages.
 
-# Screenshot of trying to use API https://gyazo.com/d850e78f7cbc6a5f579cf0e9eb94ee91
+User Registration and Authentication:
 
-Here is the code that we generated from API Layer after obtaining a token for this API.
+- The program will provide a user registration system, allowing new users to create accounts.
+- Users will be required to provide a unique username and a secure password during the registration process.
+- The system will support user authentication, allowing registered users to log in securely.
+- The user interface will include features for composing messages, searching through messages, and viewing chat history.
+  
+Message Creation and Sending:
 
-## Example of Java Code ##
+- Registered users will have the ability to compose and send messages to other registered users.
+- Messages will consist of text and may include additional metadata, such as timestamps and message IDs.
+- The system will validate the recipient's username to ensure that the message is sent to an existing user.
+ 
+Message Storage and Retrieval:
 
-Our example code is in testfile.java
-
-####
-
-The output of running this program through the API is:
-
-{
-"height": 408,
-"image_url": "https://core-production-us-east-1-imageupload.s3.amazonaws.com/363818_8511394c5e3f9ef66f3be96bd661d0/6a2db29a_wild-grass-in-the-mountains-at-sunset.jpg%3Fs%3D612x612%26w%3D0%26k%3D20%26c%3D6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w%3D?response-content-disposition=attachment%3B%20filename%3Dwild-grass-in-the-mountains-at-sunset.jpg%3Fs%3D612x612%26w%3D0%26k%3D20%26c%3D6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w%3D&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXYTEMCMCBKRUSNCS%2F20231002%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231002T002350Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Signature=61119cc3c3ace0646085b6d41044aa2f6598255db33c5c27670173c15e72e9d5",
-"name": "wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w=",
-"new_height": 408,
-"new_width": 612,
-"optimized_size": 20055,
-"saved_bytes": 3902,
-"size": 23957,
-"success": true,
-"width": 612
-}
-
-We tried to replicate this on a java file, but we could not do this as we do not have the http3 library imported. To do
-this, we need to implement other structures including new XML files, which we were not sure how to do.
-
-Some technical problems that we were experiencing are that we do not have some of the libraries needed to import like http3.
-It may be easier to switch APIs, especially since there are many options for our given problem domain.
+- The program will maintain a message database to store all chat messages.
+- Messages will be organized by conversation threads or chat rooms,
+allowing users to participate in multiple conversations.
+- Users will have the ability to retrieve and view their chat history, including
+old messages, by searching for specific keywords or phrases.
+- Access control mechanisms will ensure that only certain users can access
+and interact with specific chat rooms or conversations. User Stories:
