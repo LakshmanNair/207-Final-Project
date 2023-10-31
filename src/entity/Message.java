@@ -17,4 +17,7 @@ public class Message {
     private User getUser() {
         return sender;
     }
+    private String getContent() {
+        return content;
+    }
 }
