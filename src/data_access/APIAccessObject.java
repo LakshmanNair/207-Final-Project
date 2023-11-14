@@ -15,7 +15,7 @@ public class APIAccessObject {
         // Assign the queue name to the instance variable
         // The queue name for sending messages
 
-        // Create a connection factory to the ActiveMQ broker
+        // Create a connection factory to the ActiveMQ broker - TODO write in actual ip address and port
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
 
         // Create and start a connection
