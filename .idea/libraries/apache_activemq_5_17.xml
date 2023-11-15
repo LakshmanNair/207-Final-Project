@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="apache-activemq-5.17">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/amqp/java/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/mqtt/java/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-composite-destinations/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-durable-sub/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-exclusive-consumer/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-message-browser/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-queue-selector/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-queue/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-temp-destinations/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-topic/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-transaction/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/openwire/java/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/examples/stomp/java/src/main/java" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6" recursive="false" />
+  </library>
+</component>
