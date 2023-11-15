@@ -1,12 +1,14 @@
 package entity;
 
+import interface_adapter.PrivateChat.CreateUserid;
+
 public class User {
     private final String userid;
     private String username;
     private String password;
 
     User(String username, String password) {
-        this.userid = int // the next one available. store list of user ids.;
+        this.userid = setUserID();// the next one available. store list of user ids.;
         this.username = username;
         this.password = password;
     }
@@ -22,8 +24,8 @@ public class User {
         return password;
     }
 
-    public void setUserID() {
-        this.userid = // next unused ID or token
+    public String setUserID() {
+        return CreateUserid.NewUserID().toString();// next unused ID or token
     }
     public void setUsername(String new_username) {
         this.username = new_username;

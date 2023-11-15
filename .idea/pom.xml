@@ -4,5 +4,10 @@
         <artifactId>activemq-client</artifactId>
         <version>5.17.6</version>
     </dependency>
+    <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-client</artifactId>
+        <version>5.18.3</version>
+    </dependency>
 </dependencies>
 
