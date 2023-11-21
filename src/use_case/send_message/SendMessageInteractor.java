@@ -24,10 +24,10 @@
 //}
 
 package use_case.send_message;
-
-        import data_access.IMessageSender;
-
-        import javax.jms.JMSException;
+import data_access.IMessageSender;
+import entity.Message;
+import entity.MessageFactory;
+import javax.jms.JMSException;
 
 public class SendMessageInteractor implements SendMessageInputBoundary {
     private final IMessageSender messageSender;
@@ -46,19 +46,19 @@ public class SendMessageInteractor implements SendMessageInputBoundary {
     public void execute(SendMessageInputData sendMessageInputData) {
         try {
             // Use messageFactory to create a proper message object from the input data
-            String messageText = messageFactory.createMessage(sendMessageInputData);
+            Message message = messageFactory.createMessage(sendMessageInputData);
 
-            // Validate the message before sending
-            if (messageText == null || messageText.trim().isEmpty()) {
+            // Validate the message content before sending
+            if (message.getContent() == null || message.getContent().trim().isEmpty()) {
                 sendMessageOutputBoundary.onError("Message text is empty");
                 return;
             }
 
             // Use messageSender to send the message
-            messageSender.sendMessage(messageText);
+            messageSender.sendMessage(message.getContent());
 
             // If sending was successful, notify the output boundary
-            sendMessageOutputBoundary.onMessageSent(messageText);
+            sendMessageOutputBoundary.onMessageSent(message.getContent());
         } catch (JMSException e) {
             // If there was an error, notify the output boundary
             sendMessageOutputBoundary.onError(e.getMessage());
@@ -66,6 +66,7 @@ public class SendMessageInteractor implements SendMessageInputBoundary {
         }
     }
 }
+
 
 //send message data (content, user) to apiaccessobject, apiaccessobject takes data and connects it to output data
 //        This means output data would take apiaccessobject as a parameter -> output boundary -> presenter which prepares
