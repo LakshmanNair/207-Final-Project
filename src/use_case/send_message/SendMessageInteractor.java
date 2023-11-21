@@ -26,9 +26,9 @@
 package use_case.send_message;
 
         import data_access.IMessageSender;
+
         import javax.jms.JMSException;
 
-@SuppressWarnings("unused")
 public class SendMessageInteractor implements SendMessageInputBoundary {
     private final IMessageSender messageSender;
     private final SendMessageOutputBoundary sendMessageOutputBoundary;
@@ -48,6 +48,12 @@ public class SendMessageInteractor implements SendMessageInputBoundary {
             // Use messageFactory to create a proper message object from the input data
             String messageText = messageFactory.createMessage(sendMessageInputData);
 
+            // Validate the message before sending
+            if (messageText == null || messageText.trim().isEmpty()) {
+                sendMessageOutputBoundary.onError("Message text is empty");
+                return;
+            }
+
             // Use messageSender to send the message
             messageSender.sendMessage(messageText);
 
@@ -56,6 +62,7 @@ public class SendMessageInteractor implements SendMessageInputBoundary {
         } catch (JMSException e) {
             // If there was an error, notify the output boundary
             sendMessageOutputBoundary.onError(e.getMessage());
+            // Consider logging the exception here as well
         }
     }
 }

@@ -3,10 +3,20 @@ import data_access.APIAccessObject;
 import entity.User;
 
 import javax.jms.JMSException;
+import javax.jms.QueueConnection;
 import java.time.LocalDateTime;
 
 public class SendMessageInputData {
+    // existing fields
+    private QueueConnection queueConnection;
 
+    public QueueConnection getQueueConnection() {
+        return queueConnection;
+    }
+
+    public void setQueueConnection(QueueConnection queueConnection) {
+        this.queueConnection = queueConnection;
+    }
 //    Get message data from controller
     private String content;
 
@@ -18,6 +28,7 @@ public class SendMessageInputData {
         this.timestamp = timestamp;
         this.sender = user;
     }
+
 
     private User getUser() {
         return sender;

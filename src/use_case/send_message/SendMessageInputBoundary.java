@@ -4,6 +4,5 @@ import javax.jms.QueueConnection;
 
 public interface SendMessageInputBoundary {
     void execute(SendMessageInputData sendMessageInputData);
-
-    void execute(SendMessageInputData sendMessageInputData, QueueConnection queue);
 }
+
