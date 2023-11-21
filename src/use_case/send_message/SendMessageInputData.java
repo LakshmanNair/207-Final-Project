@@ -29,12 +29,15 @@ public class SendMessageInputData {
         this.sender = user;
     }
 
-
-    private User getUser() {
-        return sender;
-    }
-    private String getContent() {
+     public String getContent() {
         return content;
-    }
+        }
+     public User getSender() {
+        return sender;
+     }
+     public LocalDateTime getTimestamp() {
+        return timestamp;
+     }
+
 }
 
