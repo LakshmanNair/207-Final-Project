@@ -1,0 +1,38 @@
+<component name="libraryTable">
+  <library name="activemq-broker-5.18.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-broker-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-client-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-console-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-jaas-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-kahadb-store-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-openwire-legacy-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-protobuf-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-spring-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/activemq-web-5.18.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/hawtbuf-1.11.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/istack-commons-runtime-3.0.11.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jackson-annotations-2.15.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jackson-core-2.15.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jackson-databind-2.15.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jakarta.jms-api-2.0.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/javax.activation-api-1.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jaxb-api-2.2.11.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jaxb-core-2.2.11.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jaxb-runtime-2.2.11.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/jcl-over-slf4j-2.0.9.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/slf4j-api-2.0.9.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/camel" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/extra" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/optional" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/web" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/camel" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/extra" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/optional" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/lib/web" recursive="false" />
+  </library>
+</component>
