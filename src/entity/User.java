@@ -2,7 +2,7 @@ package entity;
 
 import interface_adapter.PrivateChat.CreateUserid;
 
-public class User {
+public class User implements UserInterface {
     private final String userid;
     private String username;
     private String password;
