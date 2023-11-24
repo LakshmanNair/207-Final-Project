@@ -28,7 +28,7 @@ public class CreateAccountInteractor implements CreateAccountInputBoundary{
         } else {
 
             LocalDateTime now = LocalDateTime.now();
-            User user = userFactory.create(createAccountInputData.getUsername(), createAccountInputData.getPassword(), now);
+            User user = userFactory.createUser(createAccountInputData.getUsername(), createAccountInputData.getPassword());
             userDataAccessObject.save(user);
 
             CreateAccountOutputData createAccountOutputData = new CreateAccountOutputData(user.getUserID(), now.toString(), false);
