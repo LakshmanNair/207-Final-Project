@@ -1,9 +1,11 @@
 package interface_adapter.PrivateChat;
 
+import use_case.send_message.SendMessageInputData;
 import use_case.send_message.SendMessageOutputBoundary;
 
 public class PrivateChatPresenter implements SendMessageOutputBoundary {
     private PrivateChatViewModel viewModel;
+    private SendMessageInputData sendMessageInputData;
 
     public PrivateChatPresenter(PrivateChatViewModel viewModel) {
         this.viewModel = viewModel;
@@ -13,7 +15,7 @@ public class PrivateChatPresenter implements SendMessageOutputBoundary {
     public void onMessageSent(String messageText) {
         // Update the ViewModel with success information
         viewModel.setMessageStatus("Message sent successfully.");
-        viewModel.setAdditionalInfo(messageText);
+        viewModel.setAdditionalInfo(sendMessageInputData);
         // Notify the view to update, if necessary
         // e.g., viewModel.notifyObservers() or similar mechanism
     }
