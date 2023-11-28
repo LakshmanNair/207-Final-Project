@@ -2,29 +2,43 @@ package interface_adapter.PrivateChat;
 
 import use_case.send_message.SendMessageInputData;
 import use_case.send_message.SendMessageOutputBoundary;
+import use_case.send_message.SendMessageOutputData;
+import view.PrivateChatView;
+//import use_case.send_message.SendMessageOutputData;
 
+//public class PrivateChatPresenter implements SendMessageOutputBoundary {
+//    // Reference to your UI components, e.g., a JFrame or JPanel
+//    private final PrivateChatView view;
+//
+//    public PrivateChatPresenter(PrivateChatView view) {
+//        this.view = view;
+//    }
+//
+//    @Override
+//    public void presentMessageSendingResult(SendMessageOutputData sendMessageOutputData) {
+//        if (sendMessageOutputData.isSuccess()) {
+//            view.displayMessage("Message sent successfully.");
+//            // Update the chat UI with the new message
+//            // view.updateChat(sendMessageOutputData.getMessageContent(), sendMessageOutputData.getSender());
+//        } else {
+//            view.displayError("Failed to send message: " + sendMessageOutputData.getMessage());
+//        }
+//    }
+//}
 public class PrivateChatPresenter implements SendMessageOutputBoundary {
-    private PrivateChatViewModel viewModel;
-    private SendMessageInputData sendMessageInputData;
+    private final PrivateChatView view;
 
-    public PrivateChatPresenter(PrivateChatViewModel viewModel) {
-        this.viewModel = viewModel;
+    public PrivateChatPresenter(PrivateChatView view) {
+        this.view = view;
     }
 
     @Override
-    public void onMessageSent(String messageText) {
-        // Update the ViewModel with success information
-        viewModel.setMessageStatus("Message sent successfully.");
-        viewModel.setAdditionalInfo(sendMessageInputData);
-        // Notify the view to update, if necessary
-        // e.g., viewModel.notifyObservers() or similar mechanism
-    }
-
-    @Override
-    public void onError(String error) {
-        // Update the ViewModel with error information
-        viewModel.setMessageStatus("Error sending message: " + error);
-        // Notify the view to update
-        // e.g., viewModel.notifyObservers()
+    public void presentMessageSendingResult(SendMessageOutputData outputData) {
+        if (outputData.isSuccess()) {
+            // Assuming you have a method in your view to display the actual sent message
+            view.displayMessage(outputData.getMessage()); // Update this line to display the actual message content
+        } else {
+            view.displayError("Failed to send message: " + outputData.getMessage());
+        }
     }
 }
