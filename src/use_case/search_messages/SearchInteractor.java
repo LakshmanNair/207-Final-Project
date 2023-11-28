@@ -23,6 +23,7 @@ public class SearchInteractor implements SearchInputBoundary {
         SearchViewModel viewModel = convertToViewModel(searchResults);
         presenter.presentSearchResults(viewModel);
     }
+
     private SearchViewModel convertToViewModel(List<MessageHistory> searchResults) {
         // Convert search results into a view model.
         SearchViewModel viewModel = new SearchViewModel();
@@ -31,4 +32,5 @@ public class SearchInteractor implements SearchInputBoundary {
 //                .map(messageHistory -> /* conversion logic */)
 //                .collect(Collectors.toList()));
         return viewModel;
+    }
 }
