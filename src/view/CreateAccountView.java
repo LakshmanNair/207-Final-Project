@@ -51,7 +51,7 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
                 new JLabel(CreateAccountViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         JPanel buttons = new JPanel();
-        createAccount = new JButton(CreateAccountViewModel.SIGNUP_BUTTON_LABEL);
+        createAccount = new JButton(CreateAccountViewModel.CREATEACCOUNT_BUTTON_LABEL);
         buttons.add(createAccount);
         cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
@@ -119,7 +119,7 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
                     public void keyTyped(KeyEvent e) {
                         CreateAccountState currentState = createAccountViewModel.getState();
                         currentState.setRepeatPassword(repeatPasswordInputField.getText() + e.getKeyChar());
-                        createAccountViewModel.setState(currentState); // Hmm, is this necessary?
+                        createAccountViewModel.setState(currentState);
                     }
 
                     @Override
