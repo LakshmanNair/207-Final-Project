@@ -6,6 +6,7 @@ import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
 
 
+import org.apache.activemq.ActiveMQConnection;
 import use_case.send_message.SendMessageInteractor;
 import view.PrivateChatView;
 
@@ -16,7 +17,7 @@ public class main {
         // Set up the necessary components for the application
 
         // Example: Initialize the APIAccessObject or similar data access object
-        APIAccessObject apiAccessObject = new APIAccessObject("http://localhost:8161/admin/");
+        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
 
         // Initialize the interactor with the data access object
         SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
