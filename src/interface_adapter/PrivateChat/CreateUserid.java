@@ -6,6 +6,6 @@ public class CreateUserid {
     private ArrayList<Integer> user_ids;
 
     public static Integer NewUserID() {
-
+        return 1;
     }
 }

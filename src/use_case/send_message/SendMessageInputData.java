@@ -6,38 +6,62 @@ import javax.jms.JMSException;
 import javax.jms.QueueConnection;
 import java.time.LocalDateTime;
 
+//public class SendMessageInputData {
+//    // existing fields
+//    private QueueConnection queueConnection;
+//
+//    public QueueConnection getQueueConnection() {
+//        return queueConnection;
+//    }
+//
+//    public void setQueueConnection(QueueConnection queueConnection) {
+//        this.queueConnection = queueConnection;
+//    }
+////    Get message data from controller
+//    private String content;
+//
+//    public User sender;
+//    private LocalDateTime timestamp;
+//
+//    public SendMessageInputData(String content, User user, LocalDateTime timestamp) throws JMSException {
+//        this.content = content;
+//        this.timestamp = timestamp;
+//        this.sender = user;
+//    }
+//
+//     public String getContent() {
+//        return content;
+//        }
+//     public User getSender() {
+//        return sender;
+//     }
+//     public LocalDateTime getTimestamp() {
+//        return timestamp;
+//     }
+//
+//}
+//
 public class SendMessageInputData {
-    // existing fields
-    private QueueConnection queueConnection;
+    private final String content;
+    private final User sender;
+    private final User recipient;
 
-    public QueueConnection getQueueConnection() {
-        return queueConnection;
-    }
-
-    public void setQueueConnection(QueueConnection queueConnection) {
-        this.queueConnection = queueConnection;
-    }
-//    Get message data from controller
-    private String content;
-
-    public User sender;
-    private LocalDateTime timestamp;
-
-    public SendMessageInputData(String content, User user, LocalDateTime timestamp) throws JMSException {
+    public SendMessageInputData(String content, User sender, User recipient) {
         this.content = content;
-        this.timestamp = timestamp;
-        this.sender = user;
+        this.sender = sender;
+        this.recipient = recipient;
     }
 
-     public String getContent() {
+    // Getters
+    public String getContent() {
         return content;
-        }
-     public User getSender() {
+    }
+
+    public User getSender() {
         return sender;
-     }
-     public LocalDateTime getTimestamp() {
-        return timestamp;
-     }
+    }
 
+    public User getRecipient() {
+        return recipient;
+    }
 }
-

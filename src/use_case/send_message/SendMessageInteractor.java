@@ -24,50 +24,60 @@
 //}
 
 package use_case.send_message;
+import data_access.APIAccessObject;
 import data_access.IMessageSender;
 import entity.Message;
 import entity.MessageFactory;
 import javax.jms.JMSException;
+import javax.swing.*;
 
-public class SendMessageInteractor implements SendMessageInputBoundary {
-    private final IMessageSender messageSender;
-    private final SendMessageOutputBoundary sendMessageOutputBoundary;
-    private final MessageFactory messageFactory;
+public class SendMessageInteractor implements SendMessageInputBoundary{
+    private final APIAccessObject apiAccessObject;
+    private SendMessageOutputBoundary sendMessageOutputBoundary;
 
-    public SendMessageInteractor(IMessageSender messageSender,
-                                 SendMessageOutputBoundary sendMessageOutputBoundary,
-                                 MessageFactory messageFactory) {
-        this.messageSender = messageSender;
-        this.sendMessageOutputBoundary = sendMessageOutputBoundary;
-        this.messageFactory = messageFactory;
+    public SendMessageInteractor(APIAccessObject apiAccessObject) {
+        this.apiAccessObject = apiAccessObject;
     }
 
-    @Override
-    public void execute(SendMessageInputData sendMessageInputData) {
-        try {
-            // Use messageFactory to create a proper message object from the input data
-            Message message = messageFactory.createMessage(sendMessageInputData);
+    public void setOutputBoundary(SendMessageOutputBoundary sendMessageOutputBoundary) {
+        this.sendMessageOutputBoundary = sendMessageOutputBoundary;
+    }
 
-            // Validate the message content before sending
-            if (message.getContent() == null || message.getContent().trim().isEmpty()) {
-                sendMessageOutputBoundary.onError("Message text is empty");
-                return;
+    public void sendMessage(SendMessageInputData inputData) {
+        // Use SwingWorker or similar threading mechanism to send the message asynchronously
+        new SendMessageWorker(apiAccessObject, inputData, sendMessageOutputBoundary).execute();
+    }
+
+    private static class SendMessageWorker extends SwingWorker<Void, Void> {
+        private final APIAccessObject apiAccessObject;
+        private final SendMessageInputData inputData;
+        private final SendMessageOutputBoundary sendMessageOutputBoundary;
+
+        public SendMessageWorker(APIAccessObject apiAccessObject, SendMessageInputData inputData, SendMessageOutputBoundary sendMessageOutputBoundary) {
+            this.apiAccessObject = apiAccessObject;
+            this.inputData = inputData;
+            this.sendMessageOutputBoundary = sendMessageOutputBoundary;
+        }
+
+        @Override
+        protected Void doInBackground() throws Exception {
+            // Use inputData to send the message via APIAccessObject
+            apiAccessObject.sendMessage(inputData.getRecipient().getUsername(), inputData.getContent());
+            return null;
+        }
+
+        @Override
+        protected void done() {
+            try {
+                get(); // Ensure any exception is caught
+                Message sentMessage = new MessageFactory().createMessage(inputData);
+                SendMessageOutputData outputData = new SendMessageOutputData(true, inputData.getContent());
+                sendMessageOutputBoundary.presentMessageSendingResult(outputData);
+            } catch (Exception e) {
+                Message sentMessage = new MessageFactory().createMessage(inputData);
+                SendMessageOutputData outputData = new SendMessageOutputData(false, "Failed to send message: " + e.getMessage());
+                sendMessageOutputBoundary.presentMessageSendingResult(outputData);
             }
-
-            // Use messageSender to send the message
-            messageSender.sendMessage(message.getContent());
-
-            // If sending was successful, notify the output boundary
-            sendMessageOutputBoundary.onMessageSent(message.getContent());
-        } catch (JMSException e) {
-            // If there was an error, notify the output boundary
-            sendMessageOutputBoundary.onError(e.getMessage());
-            // Consider logging the exception here as well
         }
     }
 }
-
-
-//send message data (content, user) to apiaccessobject, apiaccessobject takes data and connects it to output data
-//        This means output data would take apiaccessobject as a parameter -> output boundary -> presenter which prepares
-//        views -> viewmodel and is outputted on screen
