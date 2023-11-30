@@ -3,7 +3,7 @@ package interface_adapter.search_messages;
 import use_case.search_messages.SearchOutputBoundary;
 
 public class SearchPresenter implements SearchOutputBoundary {
-    @Override
+
     private final SearchMessagesView searchMessagesView;
 
     public SearchPresenter(SearchMessagesView searchMessagesView) {

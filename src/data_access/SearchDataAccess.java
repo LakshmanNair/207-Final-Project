@@ -10,5 +10,6 @@ public class SearchDataAccess implements SearchDataAccessInterface {
     @Override
     public List<MessageHistory> searchMessagesInChat(SearchInputData searchInputData) {
         // TODO : Return the list of MessageHistory that match the searchContent
+        return null;
     }
 }
