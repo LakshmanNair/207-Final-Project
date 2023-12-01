@@ -33,7 +33,8 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
     private final CreateAccountController createAccountController;
 
     private final JButton createAccount;
-    private final JButton cancel;
+    //private final JButton cancel;
+    public String viewName;
 
     public CreateAccountView(CreateAccountController createAccountController, CreateAccountViewModel createAccountViewModel) {
         this.createAccountViewModel = createAccountViewModel;
@@ -53,8 +54,8 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
         JPanel buttons = new JPanel();
         createAccount = new JButton(CreateAccountViewModel.CREATEACCOUNT_BUTTON_LABEL);
         buttons.add(createAccount);
-        cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+        //cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
+        //buttons.add(cancel);
         //this.createAccount = createAccount;
         //this.cancel = cancel;
 
