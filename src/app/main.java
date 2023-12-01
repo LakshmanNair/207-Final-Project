@@ -1,16 +1,21 @@
 package app;
 
 import data_access.APIAccessObject;
+import data_access.CreateAccountDataAccessObject;
 import entity.User;
+import entity.UserFactory;
+import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
 
 
 import org.apache.activemq.ActiveMQConnection;
 import use_case.send_message.SendMessageInteractor;
+import view.CreateAccountView;
 import view.PrivateChatView;
 
 import javax.jms.JMSException;
+import java.io.IOException;
 
 public class main {
     public static void main(String[] args) throws JMSException {
