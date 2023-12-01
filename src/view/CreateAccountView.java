@@ -61,8 +61,9 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
 
         createAccount.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
-                evt -> {
-                    if (evt.getSource().equals(createAccount)) {
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(createAccount)) {
                         CreateAccountState currentState = createAccountViewModel.getState();
 
                         createAccountController.execute(
@@ -70,6 +71,7 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
                                 currentState.getPassword(),
                                 currentState.getRepeatPassword()
                         );
+                        }
                     }
                 }
         );

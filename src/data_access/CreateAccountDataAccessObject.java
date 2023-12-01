@@ -56,10 +56,10 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
         this.save();
     }
 
-    @Override
-    public User get(String username) {
-        return accounts.get(username);
-    }
+//    @Override
+//    public User get(String username) {
+//        return accounts.get(username);
+//    }
 
     private void save() {
         BufferedWriter writer;

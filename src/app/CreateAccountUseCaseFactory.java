@@ -5,6 +5,7 @@ import interface_adapter.CreateAccount.CreateAccountController;
 import interface_adapter.CreateAccount.CreateAccountPresenter;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.login.LoginViewModel;
 import use_case.create_account.CreateAccountDataAccessInterface;
 import use_case.create_account.CreateAccountInputBoundary;
 import use_case.create_account.CreateAccountInteractor;
@@ -19,10 +20,10 @@ public class CreateAccountUseCaseFactory {
     private CreateAccountUseCaseFactory() {}
 
     public static CreateAccountView create(
-            ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface createAccountDataAccessInterface) {
+            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface userDataAccessObject) {
 
         try {
-            CreateAccountController createAccountController = createUserSignupUseCase(viewManagerModel, createAccountViewModel, createAccountDataAccessInterface);
+            CreateAccountController createAccountController = createUserSignupUseCase(viewManagerModel, createAccountViewModel, loginViewModel, userDataAccessObject);
             return new CreateAccountView(createAccountController, createAccountViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -31,10 +32,9 @@ public class CreateAccountUseCaseFactory {
         return null;
     }
 
-    private static CreateAccountController createUserSignupUseCase(ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface userDataAccessObject) throws IOException {
+    private static CreateAccountController createUserSignupUseCase(ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, LoginViewModel loginViewModel, CreateAccountDataAccessInterface userDataAccessObject) throws IOException {
 
-        // Notice how we pass this method's parameters to the Presenter.
-        CreateAccountOutputBoundary signupOutputBoundary = new CreateAccountPresenter(createAccountViewModel);
+        CreateAccountOutputBoundary signupOutputBoundary = new CreateAccountPresenter(viewManagerModel, createAccountViewModel, loginViewModel);
 
         UserFactory userFactory = new UserFactory();
 
