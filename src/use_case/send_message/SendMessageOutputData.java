@@ -66,10 +66,15 @@ import entity.User;
 public class SendMessageOutputData {
     private final boolean success;
     private final String message;
+    User sender;
+    User recipient;
 
-    public SendMessageOutputData(boolean success, String message) {
+    public SendMessageOutputData(boolean success, String message, User sender, User recipient) {
         this.success = success;
         this.message = message;
+        this.sender = sender;
+        this.recipient = recipient;
+
     }
 
     public boolean isSuccess() {
@@ -78,5 +83,14 @@ public class SendMessageOutputData {
 
     public String getMessage() {
         return message;
+    }
+
+    public User getRecipient() {
+        return recipient;
+    }
+
+
+    public User getSender() {
+        return sender;
     }
 }

@@ -1,4 +1,4 @@
-package interface_adapter;
+package interface_adapter.login;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,8 +17,6 @@ public class ViewManagerModel {
         this.activeViewName = activeView;
     }
 
-
-    // This is what the CreateAccount Presenter will call to let the ViewModel know
     // This is what the Signup Presenter will call to let the ViewModel know
     // to alert the View
     public void firePropertyChanged() {
