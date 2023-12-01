@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class CreateAccountInteractor implements CreateAccountInputBoundary{
 
-   final  CreateAccountDataAccessInterface userDataAccessObject;
+   final CreateAccountDataAccessInterface userDataAccessObject;
    final CreateAccountOutputBoundary userPresenter;
    final UserFactory userFactory;
 

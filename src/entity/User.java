@@ -2,8 +2,8 @@ package entity;
 
 import interface_adapter.PrivateChat.CreateUserid;
 
-public class User implements UserInterface {
-    private final String userid;
+public class User {
+    private String userid;
     private String username;
     private String password;
 
@@ -33,5 +33,6 @@ public class User implements UserInterface {
     public void setPassword(String new_password) {
         this.password = new_password;
     }
+    public void setUserid(String new_userid) {this.userid = new_userid;}
 
 }

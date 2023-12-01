@@ -19,6 +19,7 @@
       <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/examples/openwire/advanced-scenarios/jms-example-wildcard-consumer/src/main/java" />
       <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/examples/openwire/java/src/main/java" />
       <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/examples/stomp/java/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3/tmp/jetty-127_0_0_1-8161-admin-_admin-any-9854070287085335326/jsp" />
     </SOURCES>
     <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.18.3" recursive="false" />
   </library>

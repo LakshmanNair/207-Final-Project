@@ -32,7 +32,7 @@ import entity.MessageFactory;
 import javax.jms.JMSException;
 import javax.swing.*;
 
-public class SendMessageInteractor implements SendMessageInputBoundary{
+public class SendMessageInteractor implements SendMessageInputBoundary {
     private final APIAccessObject apiAccessObject;
     private SendMessageOutputBoundary sendMessageOutputBoundary;
 
