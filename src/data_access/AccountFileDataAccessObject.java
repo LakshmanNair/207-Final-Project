@@ -34,9 +34,9 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
                     String userid = String.valueOf(col[headers.get("userid")]);
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-                    User oldUser = UserFactory.createUser(username, password);
-                    oldUser.setUserid(userid);
-                    accounts.put(userid, oldUser);
+//                    User oldUser = UserFactory.createUser(username, password);
+//                    oldUser.setUserid(userid);
+//                    accounts.put(userid, oldUser);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

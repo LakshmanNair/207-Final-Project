@@ -18,9 +18,6 @@ public class ViewManagerModel {
     }
 
 
-    // This is what the CreateAccount Presenter will call to let the ViewModel know
-    // This is what the Signup Presenter will call to let the ViewModel know
-    // to alert the View
     public void firePropertyChanged() {
         support.firePropertyChange("view", null, this.activeViewName);
     }
