@@ -26,6 +26,7 @@
 package use_case.send_message;
 import data_access.APIAccessObject;
 import data_access.IMessageSender;
+import data_access.ReceiveMessageWorker;
 import entity.Message;
 import entity.MessageFactory;
 import javax.jms.JMSException;
@@ -66,16 +67,17 @@ public class SendMessageInteractor implements SendMessageInputBoundary{
             return null;
         }
 
+
         @Override
         protected void done() {
             try {
                 get(); // Ensure any exception is caught
                 Message sentMessage = new MessageFactory().createMessage(inputData);
-                SendMessageOutputData outputData = new SendMessageOutputData(true, inputData.getContent());
+                SendMessageOutputData outputData = new SendMessageOutputData(true, sentMessage.getContent(), inputData.getSender(), inputData.getRecipient()); //used to be inputData.getContent()
                 sendMessageOutputBoundary.presentMessageSendingResult(outputData);
             } catch (Exception e) {
                 Message sentMessage = new MessageFactory().createMessage(inputData);
-                SendMessageOutputData outputData = new SendMessageOutputData(false, "Failed to send message: " + e.getMessage());
+                SendMessageOutputData outputData = new SendMessageOutputData(false, "Failed to send message: " + e.getMessage(), inputData.getSender(), inputData.getRecipient());
                 sendMessageOutputBoundary.presentMessageSendingResult(outputData);
             }
         }
