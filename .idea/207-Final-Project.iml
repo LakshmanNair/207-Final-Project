@@ -11,5 +11,6 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="activemq-broker-5.17.6" level="project" />
     <orderEntry type="library" name="apache.activemq.all" level="project" />
+    <orderEntry type="library" name="apache-activemq-5.18" level="project" />
   </component>
 </module>
