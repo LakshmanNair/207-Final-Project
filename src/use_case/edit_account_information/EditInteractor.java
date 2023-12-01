@@ -12,9 +12,10 @@ public class EditInteractor implements EditInputBoundary{
 
     @Override
     public void execute(EditInputData editInputData) {
-        if (editDataAccessObject.existsByID(editInputData.getUserid())) {
+        if (editDataAccessObject.existsByNameAndPassword(editInputData.getCurrentUsername(),
+                editInputData.getCurrentPassword())) {
             editDataAccessObject.save(editInputData);
-            EditOutputData editOutputData = new EditOutputData(editInputData.getNewUsername(), editInputData.getUserid());
+            EditOutputData editOutputData = new EditOutputData(editInputData.getNewUsername(), editInputData.getNewPassword());
             editPresenter.prepareSuccessView(editOutputData);
         } else {
             editPresenter.prepareFailView("There is no record of a user with this ID");

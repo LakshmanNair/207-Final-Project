@@ -21,6 +21,8 @@ public class GroupChat{
 
         return this;
     }
+
+
     public GroupChat removeUser(User admin,User user){
         if(this.admin.equals(admin)){
             users.remove(user);
