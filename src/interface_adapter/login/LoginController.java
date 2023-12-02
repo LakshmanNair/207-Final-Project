@@ -22,7 +22,7 @@ public class LoginController {
         loginUseCaseInteractor.execute(loginInputData);
     }
     public void switchToSignup() {
-        viewManager.switchToSignupView();
+        viewManager.setActiveView("SignupView");
     }
 
 }

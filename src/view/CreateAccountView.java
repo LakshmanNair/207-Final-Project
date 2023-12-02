@@ -25,7 +25,7 @@ class LabelTextPanel extends JPanel {
 }
 
 public class CreateAccountView extends JPanel implements ActionListener, PropertyChangeListener{
-    public final String viewName = "SignupView";
+    public final String viewname = "SignupView";
 
     private final CreateAccountViewModel createAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
@@ -34,7 +34,8 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
     private final CreateAccountController createAccountController;
 
     private final JButton createAccount;
-    private final JButton cancel;
+    //private final JButton cancel;
+    public String viewName;
 
     private final ViewManagerModel viewManager;
 
@@ -58,8 +59,8 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
         JPanel buttons = new JPanel();
         createAccount = new JButton(CreateAccountViewModel.CREATE_ACCOUNT_BUTTON_LABEL);
         buttons.add(createAccount);
-        cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+        //cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
+        //buttons.add(cancel);
         //this.createAccount = createAccount;
         //this.cancel = cancel;
 
