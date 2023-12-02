@@ -59,7 +59,6 @@ public class main {
         viewManagerModel.setActiveView(createAccountView.viewName);
         viewManagerModel.firePropertyChanged();
 
-
 //        public void LoginButtonListener(ActionListener listener) {
 //            privateChatButton.addActionListener(listener);
 //        }
@@ -67,15 +66,5 @@ public class main {
 
         application.pack();
         application.setVisible(true);
-
-
-                    // Start the application (e.g., make the main window visible)
-                    chatView.setVisible(true);                });
-                menuScreen.setGroupChatButtonListener(e -> {
-                    // Logic to open group chat
-                });
-            }
-        });
     }
 }
-
