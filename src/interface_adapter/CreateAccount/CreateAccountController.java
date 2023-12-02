@@ -17,9 +17,9 @@ public class CreateAccountController {
                 username, password1, password2);
 
         userCreateAccountUseCaseInteractor.execute(signupInputData);
-        if (userCreateAccountUseCaseInteractor.execute(signupInputData)) {
-            viewManager.switchToLoginView();
-        }
+//        if (userCreateAccountUseCaseInteractor.execute(signupInputData)) {
+//            viewManager.switchToLoginView();
+//        }
     }
 }
 
