@@ -1,7 +1,10 @@
 package app;
 
 import data_access.APIAccessObject;
+import data_access.CreateAccountDataAccessObject;
 import entity.User;
+import entity.UserFactory;
+import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
 
@@ -13,6 +16,11 @@ import view.PrivateChatView;
 
 import javax.jms.JMSException;
 import javax.swing.*;
+import view.CreateAccountView;
+import view.PrivateChatView;
+
+import javax.jms.JMSException;
+import java.io.IOException;
 
 //public class main {
 //    public static void main(String[] args) throws JMSException {

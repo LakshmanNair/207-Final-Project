@@ -1,8 +1,7 @@
 package app;
 
-import entity.UserFactoryInterface;
 import entity.UserFactory;
-import interface_adapter.login.ViewManagerModel;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
@@ -51,6 +50,6 @@ public class LoginUseCaseFactory {
         LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
-        return new LoginController(loginInteractor);
+        return new LoginController(loginInteractor, viewManagerModel);
     }
 }

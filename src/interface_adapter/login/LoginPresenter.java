@@ -1,5 +1,6 @@
 package interface_adapter.login;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import use_case.login.LoginOutputBoundary;
@@ -9,7 +10,7 @@ public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
     private final LoggedInViewModel loggedInViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel,
