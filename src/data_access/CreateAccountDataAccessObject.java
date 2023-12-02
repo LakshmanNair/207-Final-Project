@@ -5,7 +5,6 @@ import entity.UserFactory;
 import use_case.create_account.CreateAccountDataAccessInterface;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,8 +40,8 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
                     String[] col = row.split(",");
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-                    String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
-                    LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
+//                    String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
+//                    LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                     User user = userFactory.createUser(username, password);
                     accounts.put(username, user);
                 }
@@ -69,7 +68,7 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
             writer.newLine();
 
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
+                String line = String.format("%s,%s",
                         user.getUsername(), user.getPassword());
                 writer.write(line);
                 writer.newLine();

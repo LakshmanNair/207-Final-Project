@@ -6,8 +6,13 @@ import use_case.create_account.CreateAccountDataAccessInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public  class AddUserDataAccessObject implements CreateAccountDataAccessInterface {
+public class AddUserDataAccessObject implements CreateAccountDataAccessInterface {
     private final Map<String, User> users = new HashMap<>();
+
+    @Override
+    public User get(String username) {
+        return null;
+    }
 
     /**
      * @param identifier the user's username

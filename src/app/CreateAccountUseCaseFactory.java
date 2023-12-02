@@ -23,7 +23,7 @@ public class CreateAccountUseCaseFactory {
 
         try {
             CreateAccountController createAccountController = createUserSignupUseCase(viewManagerModel, createAccountViewModel, createAccountDataAccessInterface);
-            return new CreateAccountView(createAccountController, createAccountViewModel);
+            return new CreateAccountView(createAccountController, createAccountViewModel, viewManagerModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
         }
@@ -34,13 +34,13 @@ public class CreateAccountUseCaseFactory {
     private static CreateAccountController createUserSignupUseCase(ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface userDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        CreateAccountOutputBoundary signupOutputBoundary = new CreateAccountPresenter(createAccountViewModel);
+        CreateAccountOutputBoundary signupOutputBoundary = new CreateAccountPresenter(createAccountViewModel, viewManagerModel);
 
         UserFactory userFactory = new UserFactory();
 
         CreateAccountInputBoundary userSignupInteractor = new CreateAccountInteractor(
                 userDataAccessObject, signupOutputBoundary, userFactory);
 
-        return new CreateAccountController(userSignupInteractor);
+        return new CreateAccountController(userSignupInteractor, viewManagerModel);
     }
 }

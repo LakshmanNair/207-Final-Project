@@ -25,7 +25,7 @@ class LabelTextPanel extends JPanel {
 }
 
 public class CreateAccountView extends JPanel implements ActionListener, PropertyChangeListener{
-    public final String viewname = "SignupView";
+    public final String viewName = "SignupView";
 
     private final CreateAccountViewModel createAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
