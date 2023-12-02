@@ -9,14 +9,17 @@ public class ViewManagerModel {
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
+    public ViewManagerModel(){
+
+    }
     public String getActiveView() {
         return activeViewName;
     }
 
     public void setActiveView(String activeView) {
         this.activeViewName = activeView;
+        firePropertyChanged();
     }
-
 
     public void firePropertyChanged() {
         support.firePropertyChange("view", null, this.activeViewName);
@@ -24,5 +27,12 @@ public class ViewManagerModel {
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+    }
+    public void switchToSignupView() {
+        setActiveView("SignupView");
+    }
+
+    public void switchToLoginView() {
+        setActiveView("LoginView");
     }
 }

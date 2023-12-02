@@ -1,13 +1,17 @@
 package interface_adapter.login;
 
+import interface_adapter.ViewManagerModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInputData;
 
 public class LoginController {
 
-    final LoginInputBoundary loginUseCaseInteractor;
-    public LoginController(LoginInputBoundary loginUseCaseInteractor) {
+    private final LoginInputBoundary loginUseCaseInteractor;
+    private final ViewManagerModel viewManager;
+
+    public LoginController(LoginInputBoundary loginUseCaseInteractor, ViewManagerModel viewManager) {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
+        this.viewManager = viewManager;
     }
 
 
@@ -17,4 +21,8 @@ public class LoginController {
 
         loginUseCaseInteractor.execute(loginInputData);
     }
+    public void switchToSignup() {
+        viewManager.switchToSignupView();
+    }
+
 }

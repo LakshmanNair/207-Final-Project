@@ -41,8 +41,6 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
                     String[] col = row.split(",");
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-                    //String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
-                    //LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                     User user = userFactory.createUser(username, password);
                     accounts.put(username, user);
                 }
@@ -56,10 +54,10 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
         this.save();
     }
 
-//    @Override
-//    public User get(String username) {
-//        return accounts.get(username);
-//    }
+    @Override
+    public User get(String username) {
+        return accounts.get(username);
+    }
 
     private void save() {
         BufferedWriter writer;
@@ -69,7 +67,7 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
             writer.newLine();
 
             for (User user : accounts.values()) {
-                String line = String.format("%s,%s",
+                String line = String.format("%s,%s,%s",
                         user.getUsername(), user.getPassword());
                 writer.write(line);
                 writer.newLine();

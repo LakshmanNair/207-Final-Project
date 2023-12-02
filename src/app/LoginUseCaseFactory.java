@@ -50,6 +50,6 @@ public class LoginUseCaseFactory {
         LoginInputBoundary loginInteractor = new LoginInteractor(
                 userDataAccessObject, loginOutputBoundary);
 
-        return new LoginController(loginInteractor);
+        return new LoginController(loginInteractor, viewManagerModel);
     }
 }

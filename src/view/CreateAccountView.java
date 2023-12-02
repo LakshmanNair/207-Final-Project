@@ -3,6 +3,7 @@ package view;
 import interface_adapter.CreateAccount.CreateAccountController;
 import interface_adapter.CreateAccount.CreateAccountState;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
+import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,8 @@ class LabelTextPanel extends JPanel {
 }
 
 public class CreateAccountView extends JPanel implements ActionListener, PropertyChangeListener{
-    public  String viewName = "create account";
+    public final String viewname = "SignupView";
+
     private final CreateAccountViewModel createAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
@@ -33,10 +35,15 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
 
     private final JButton createAccount;
     //private final JButton cancel;
+    public String viewName;
 
-    public CreateAccountView(CreateAccountController createAccountController, CreateAccountViewModel createAccountViewModel) {
-        this.createAccountController = createAccountController;
+    private final ViewManagerModel viewManager;
+
+    public CreateAccountView(CreateAccountController createAccountController, CreateAccountViewModel createAccountViewModel,
+                             ViewManagerModel viewManager) {
         this.createAccountViewModel = createAccountViewModel;
+        this.createAccountController = createAccountController;
+        this.viewManager = viewManager;
         createAccountViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(CreateAccountViewModel.TITLE_LABEL);
@@ -50,7 +57,7 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
                 new JLabel(CreateAccountViewModel.REPEAT_PASSWORD_LABEL), repeatPasswordInputField);
 
         JPanel buttons = new JPanel();
-        createAccount = new JButton(CreateAccountViewModel.CREATEACCOUNT_BUTTON_LABEL);
+        createAccount = new JButton(CreateAccountViewModel.CREATE_ACCOUNT_BUTTON_LABEL);
         buttons.add(createAccount);
         //cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
         //buttons.add(cancel);
@@ -59,9 +66,8 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
 
         createAccount.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(createAccount)) {
+                evt -> {
+                    if (evt.getSource().equals(createAccount)) {
                         CreateAccountState currentState = createAccountViewModel.getState();
 
                         createAccountController.execute(
@@ -69,7 +75,6 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
                                 currentState.getPassword(),
                                 currentState.getRepeatPassword()
                         );
-                        }
                     }
                 }
         );
