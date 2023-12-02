@@ -20,7 +20,7 @@ public class CreateAccountInteractor implements CreateAccountInputBoundary{
     }
 
     @Override
-    public void execute(CreateAccountInputData createAccountInputData) {
+    public boolean execute(CreateAccountInputData createAccountInputData) {
         if (userDataAccessObject.existsByName(createAccountInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");
         } else if (!createAccountInputData.getPassword().equals(createAccountInputData.getRepeatPassword())) {
@@ -28,11 +28,13 @@ public class CreateAccountInteractor implements CreateAccountInputBoundary{
         } else {
 
             LocalDateTime now = LocalDateTime.now();
-            User user = userFactory.createUser(createAccountInputData.getUsername(), createAccountInputData.getPassword());
+            User user = UserFactory.createUser(createAccountInputData.getUsername(), createAccountInputData.getPassword());
             userDataAccessObject.save(user);
 
             CreateAccountOutputData createAccountOutputData = new CreateAccountOutputData(user.getUserID(), now.toString(), false);
             userPresenter.prepareSuccessView(createAccountOutputData);
+            return true;
         }
+        return false;
     }
 }
