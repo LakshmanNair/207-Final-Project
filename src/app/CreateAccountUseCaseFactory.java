@@ -1,12 +1,10 @@
 package app;
 
 import entity.UserFactory;
-import entity.UserFactoryInterface;
 import interface_adapter.CreateAccount.CreateAccountController;
 import interface_adapter.CreateAccount.CreateAccountPresenter;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.login.LoginViewModel;
 import use_case.create_account.CreateAccountDataAccessInterface;
 import use_case.create_account.CreateAccountInputBoundary;
 import use_case.create_account.CreateAccountInteractor;
@@ -21,31 +19,28 @@ public class CreateAccountUseCaseFactory {
     private CreateAccountUseCaseFactory() {}
 
     public static CreateAccountView create(
-            ViewManagerModel viewManagerModel, LoginViewModel loginViewModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface userDataAccessObject) {
+            ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface createAccountDataAccessInterface) {
 
         try {
-            CreateAccountController createAccountController = createUserSignupUseCase(viewManagerModel, createAccountViewModel, loginViewModel, userDataAccessObject);
-            return new CreateAccountView(createAccountController, createAccountViewModel);
+            CreateAccountController createAccountController = createUserSignupUseCase(viewManagerModel, createAccountViewModel, createAccountDataAccessInterface);
+            return new CreateAccountView(createAccountController, createAccountViewModel, viewManagerModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
-            try {
-                throw e; // Propagate the exception further
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         }
 
-        //return null;
+        return null;
     }
 
-    private static CreateAccountController createUserSignupUseCase(ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, LoginViewModel loginViewModel, CreateAccountDataAccessInterface userDataAccessObject) throws IOException {
+    private static CreateAccountController createUserSignupUseCase(ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, CreateAccountDataAccessInterface userDataAccessObject) throws IOException {
 
-        CreateAccountOutputBoundary createAccountOutputBoundary = new CreateAccountPresenter(viewManagerModel, createAccountViewModel, loginViewModel);
+        // Notice how we pass this method's parameters to the Presenter.
+        CreateAccountOutputBoundary signupOutputBoundary = new CreateAccountPresenter(createAccountViewModel, viewManagerModel);
 
-        UserFactoryInterface userFactoryInterface = new UserFactory();
+        UserFactory userFactory = new UserFactory();
 
         CreateAccountInputBoundary userSignupInteractor = new CreateAccountInteractor(
-                userDataAccessObject, createAccountOutputBoundary, userFactoryInterface);
-        return new CreateAccountController(userSignupInteractor);
+                userDataAccessObject, signupOutputBoundary, userFactory);
+
+        return new CreateAccountController(userSignupInteractor, viewManagerModel);
     }
 }

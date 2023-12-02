@@ -5,7 +5,9 @@ import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
+import use_case.login.LoginUserDataAccessInterface;
 import view.CreateAccountView;
+import view.LoginView;
 import view.ViewManager;
 import data_access.CreateAccountDataAccessObject;
 
@@ -43,9 +45,11 @@ public class CreateAccountMain {
             throw new RuntimeException(e);
         }
 
-        CreateAccountView createAccountView = CreateAccountUseCaseFactory.create(viewManagerModel,loginViewModel, createAccountViewModel, userDataAccessObject);
+        CreateAccountView createAccountView = CreateAccountUseCaseFactory.create(viewManagerModel, createAccountViewModel, userDataAccessObject);
         views.add(createAccountView, createAccountView.viewName);
 
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        views.add(loginView, loginView.viewName);
 
         viewManagerModel.setActiveView(createAccountView.viewName);
         viewManagerModel.firePropertyChanged();
