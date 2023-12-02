@@ -59,37 +59,15 @@ public class main {
         viewManagerModel.setActiveView(createAccountView.viewName);
         viewManagerModel.firePropertyChanged();
 
+
+//        public void LoginButtonListener(ActionListener listener) {
+//            privateChatButton.addActionListener(listener);
+//        }
+
+
         application.pack();
         application.setVisible(true);
 
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                MenuScreen menuScreen = new MenuScreen();
-                menuScreen.setPrivateChatButtonListener(e -> {
-                    APIAccessObject apiAccessObject = null;
-                    try {
-                        apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
-                    } catch (JMSException ex) {
-                        throw new RuntimeException(ex);
-                    }
-
-                    // Initialize the interactor with the data access object
-                    SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-
-                    // Initialize the view
-                    PrivateChatView chatView = new PrivateChatView();
-
-                    // Initialize the presenter with the view
-                    PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-
-                    // Initialize the controller with the interactor and view
-                    PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("test", "pass"), apiAccessObject, chatView);
-
-                    // Set the presenter in the interactor
-                    sendMessageInteractor.setOutputBoundary(chatPresenter);
-
-                    // Set the controller in the view
-                    chatView.setController(chatController);
 
                     // Start the application (e.g., make the main window visible)
                     chatView.setVisible(true);                });

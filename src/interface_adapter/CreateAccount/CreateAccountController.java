@@ -18,8 +18,8 @@ public class CreateAccountController {
 
         userCreateAccountUseCaseInteractor.execute(signupInputData);
 //        if (userCreateAccountUseCaseInteractor.execute(signupInputData)) {
-//            viewManager.setActiveView("LoginView");
-//    }
+//            viewManager.switchToLoginView();
+//        }
     }
 }
 
