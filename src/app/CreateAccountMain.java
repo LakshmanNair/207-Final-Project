@@ -3,8 +3,6 @@ package app;
 import entity.UserFactory;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.login.LoginViewModel;
 import view.CreateAccountView;
 import view.ViewManager;
 import data_access.CreateAccountDataAccessObject;
@@ -32,9 +30,11 @@ public class CreateAccountMain {
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         new ViewManager(views, cardLayout, viewManagerModel);
 
-        LoginViewModel loginViewModel = new LoginViewModel();
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
-        CreateAccountViewModel createAccountViewModel = new CreateAccountViewModel();
+        // The data for the views, such as username and password, are in the ViewModels.
+        // This information will be changed by a presenter object that is reporting the
+        // results from the use case. The ViewModels are observable, and will
+        // be observed by the Views.
+        CreateAccountViewModel signupViewModel = new CreateAccountViewModel();
 
         CreateAccountDataAccessObject userDataAccessObject;
         try {
@@ -43,10 +43,8 @@ public class CreateAccountMain {
             throw new RuntimeException(e);
         }
 
-        CreateAccountView createAccountView = CreateAccountUseCaseFactory.create(viewManagerModel,loginViewModel, createAccountViewModel, userDataAccessObject);
+        CreateAccountView createAccountView = CreateAccountUseCaseFactory.create(viewManagerModel,signupViewModel, userDataAccessObject);
         views.add(createAccountView, createAccountView.viewName);
-
-
         viewManagerModel.setActiveView(createAccountView.viewName);
         viewManagerModel.firePropertyChanged();
 

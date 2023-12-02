@@ -13,9 +13,9 @@ import java.time.format.DateTimeFormatter;
 public class CreateAccountPresenter implements CreateAccountOutputBoundary{
 
     private final CreateAccountViewModel createAccountViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
-    public CreateAccountPresenter(CreateAccountViewModel createAccountViewModel) {
+    public CreateAccountPresenter(CreateAccountViewModel createAccountViewModel, ViewManagerModel viewManagerModel) {
         this.viewManagerModel = viewManagerModel;
         this.createAccountViewModel = createAccountViewModel;
     }

@@ -48,29 +48,22 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         newAcc = new JButton(LoginViewModel.CREATE_ANOTHER_ACCOUNT);
         buttons.add(newAcc);
 
-        logIn.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(logIn)) {
-                            LoginState currentState = loginViewModel.getState();
+        logIn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                LoginState currentState = loginViewModel.getState();
+                loginController.execute(
+                        currentState.getUsername(),
+                        currentState.getPassword()
+                );
+            }
+        });
 
-                            loginController.execute(
-                                    currentState.getUsername(),
-                                    currentState.getPassword()
-                            );
-                        }
-                    }
-                }
-        );
-
-        newAcc.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                }
-        );
+        newAcc.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                // Logic for switching to signup button
+                loginController.switchToSignup();
+            }
+        });
 
         usernameInputField.addKeyListener(new KeyListener() {
             @Override
