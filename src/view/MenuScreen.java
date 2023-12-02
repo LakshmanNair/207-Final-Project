@@ -165,3 +165,4 @@ public class MenuScreen {
         groupChatButton.addActionListener(listener);
     }
 }
+
