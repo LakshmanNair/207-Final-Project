@@ -21,8 +21,8 @@ public class CreateAccountPresenter implements CreateAccountOutputBoundary{
     }
     @Override
     public void prepareSuccessView(CreateAccountOutputData response) {
-        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
+//        LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
+//        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
 
         viewManagerModel.setActiveView(createAccountViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
