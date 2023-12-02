@@ -54,7 +54,6 @@ import view.PrivateChatView;
 //    }
 //
 //}
-// TODO change this to name thats in the TO: box.
 
 public class PrivateChatController {
     private final SendMessageInputBoundary sendMessageInteractor;
@@ -70,9 +69,13 @@ public class PrivateChatController {
         this.chatView = chatView;
     }
 
-    public void setRecipient(User recipient) {
-        this.recipient = recipient;
-        startChatSession(recipient.getUsername());
+    public void setRecipient(User newRecipient) {
+        if (this.recipient == null || !this.recipient.getUsername().equals(newRecipient.getUsername())) {
+            this.recipient = newRecipient;
+            startChatSession(newRecipient.getUsername());
+        } else {
+            this.recipient = newRecipient; // Update recipient details but no need to restart the chat session
+        }
     }
 
     public void onSendMessage(String messageContent) {

@@ -1,10 +1,7 @@
 package use_case.create_account;
 
 import entity.User;
-import entity.UserFactory;
 import entity.UserFactoryInterface;
-
-import java.time.LocalDateTime;
 
 public class CreateAccountInteractor implements CreateAccountInputBoundary {
 
@@ -21,7 +18,7 @@ public class CreateAccountInteractor implements CreateAccountInputBoundary {
     }
 
     @Override
-    public boolean execute(CreateAccountInputData createAccountInputData) {
+    public void execute(CreateAccountInputData createAccountInputData) {
         if (userDataAccessObject.existsByName(createAccountInputData.getUsername())) {
             userPresenter.prepareFailView("User already exists.");
         } else if (!createAccountInputData.getPassword().equals(createAccountInputData.getRepeatPassword())) {
@@ -34,8 +31,8 @@ public class CreateAccountInteractor implements CreateAccountInputBoundary {
 
             CreateAccountOutputData createAccountOutputData = new CreateAccountOutputData(user.getUsername(), false);
             userPresenter.prepareSuccessView(createAccountOutputData);
-            return true;
+//            return true;
         }
-        return false;
+//        return false;
     }
 }
