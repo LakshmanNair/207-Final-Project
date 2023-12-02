@@ -24,8 +24,7 @@ class LabelTextPanel extends JPanel {
 }
 
 public class CreateAccountView extends JPanel implements ActionListener, PropertyChangeListener{
-    public final String viewname = "create account";
-
+    public  String viewName = "create account";
     private final CreateAccountViewModel createAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
@@ -34,11 +33,10 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
 
     private final JButton createAccount;
     //private final JButton cancel;
-    public String viewName;
 
     public CreateAccountView(CreateAccountController createAccountController, CreateAccountViewModel createAccountViewModel) {
-        this.createAccountViewModel = createAccountViewModel;
         this.createAccountController = createAccountController;
+        this.createAccountViewModel = createAccountViewModel;
         createAccountViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(CreateAccountViewModel.TITLE_LABEL);

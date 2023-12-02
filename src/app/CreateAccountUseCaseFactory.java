@@ -1,6 +1,7 @@
 package app;
 
 import entity.UserFactory;
+import entity.UserFactoryInterface;
 import interface_adapter.CreateAccount.CreateAccountController;
 import interface_adapter.CreateAccount.CreateAccountPresenter;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
@@ -27,20 +28,24 @@ public class CreateAccountUseCaseFactory {
             return new CreateAccountView(createAccountController, createAccountViewModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
+            try {
+                throw e; // Propagate the exception further
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
 
-        return null;
+        //return null;
     }
 
     private static CreateAccountController createUserSignupUseCase(ViewManagerModel viewManagerModel, CreateAccountViewModel createAccountViewModel, LoginViewModel loginViewModel, CreateAccountDataAccessInterface userDataAccessObject) throws IOException {
 
-        CreateAccountOutputBoundary signupOutputBoundary = new CreateAccountPresenter(viewManagerModel, createAccountViewModel, loginViewModel);
+        CreateAccountOutputBoundary createAccountOutputBoundary = new CreateAccountPresenter(viewManagerModel, createAccountViewModel, loginViewModel);
 
-        UserFactory userFactory = new UserFactory();
+        UserFactoryInterface userFactoryInterface = new UserFactory();
 
         CreateAccountInputBoundary userSignupInteractor = new CreateAccountInteractor(
-                userDataAccessObject, signupOutputBoundary, userFactory);
-
+                userDataAccessObject, createAccountOutputBoundary, userFactoryInterface);
         return new CreateAccountController(userSignupInteractor);
     }
 }
