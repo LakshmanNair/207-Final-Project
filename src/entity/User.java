@@ -13,13 +13,17 @@ public class User implements UserInterface{
         this.password = password;
     }
 
+    @Override
     public String getUserID() {
         return userid;
     }
+
+    @Override
     public String getUsername() {
         return username;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -33,6 +37,6 @@ public class User implements UserInterface{
     public void setPassword(String new_password) {
         this.password = new_password;
     }
-    public void setUserid(String new_userid) {this.userid = new_userid;}
+    //public void setUserid(String new_userid) {this.userid = new_userid;}
 
 }

@@ -3,13 +3,13 @@ package use_case.create_account;
 public class CreateAccountOutputData {
 
     private final String username;
-    private String creationTime;
+//    private String creationTime;
 
     private final boolean useCaseFailed;
 
-    public CreateAccountOutputData(String username, String creationTime, boolean useCaseFailed) {
+    public CreateAccountOutputData(String username, boolean useCaseFailed) {
         this.username = username;
-        this.creationTime = creationTime;
+//        this.creationTime = creationTime;
         this.useCaseFailed = useCaseFailed;
     }
 
@@ -17,12 +17,12 @@ public class CreateAccountOutputData {
         return username;
     }
 
-    public String getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(String creationTime) {
-        this.creationTime = creationTime;
-    }
+//    public String getCreationTime() {
+//        return creationTime;
+//    }
+//
+//    public void setCreationTime(String creationTime) {
+//        this.creationTime = creationTime;
+//    }
 
 }
