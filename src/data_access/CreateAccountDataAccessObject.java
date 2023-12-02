@@ -41,6 +41,8 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
                     String[] col = row.split(",");
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
+                    String creationTimeText = String.valueOf(col[headers.get("creation_time")]);
+                    LocalDateTime ldt = LocalDateTime.parse(creationTimeText);
                     User user = userFactory.createUser(username, password);
                     accounts.put(username, user);
                 }
