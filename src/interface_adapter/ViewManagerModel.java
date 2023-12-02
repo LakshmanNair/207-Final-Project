@@ -28,11 +28,4 @@ public class ViewManagerModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-    public void switchToSignupView() {
-        setActiveView("SignupView");
-    }
-
-    public void switchToLoginView() {
-        setActiveView("LoginView");
-    }
 }
