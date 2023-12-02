@@ -3,13 +3,14 @@ package data_access;
 import entity.User;
 import entity.UserFactory;
 import use_case.create_account.CreateAccountDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class CreateAccountDataAccessObject implements CreateAccountDataAccessInterface {
+public class CreateAccountDataAccessObject implements CreateAccountDataAccessInterface, LoginUserDataAccessInterface {
 
     private final File csvFile;
 
