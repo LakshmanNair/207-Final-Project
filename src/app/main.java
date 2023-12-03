@@ -56,7 +56,7 @@ public class main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        viewManagerModel.setActiveView(createAccountView.viewName);
+        viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
 //        public void LoginButtonListener(ActionListener listener) {

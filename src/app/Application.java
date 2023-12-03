@@ -85,6 +85,10 @@ public class Application {
                     // Logic to open group chat
                 });
 
+                menuScreen.setEditAccountInfoButtonListener(e -> {
+                    // open edit account info screen
+                });
+
                 // Show the MenuScreen
 //                menuScreen.createAndShowGUI();
             }
