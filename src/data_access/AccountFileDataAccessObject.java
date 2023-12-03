@@ -10,18 +10,18 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class AccountFileDataAccessObject implements EditDataAccessInterface {
 
     private final File csvFile;
     private final Map<String, Integer> headers = new LinkedHashMap<>();
-    private final Map<String, User> accounts = new HashMap<>();
+    private final Map<String, String> accounts = new HashMap<>();
 
     public AccountFileDataAccessObject(String csvPath) {
         csvFile = new File(csvPath);
-        headers.put("userid", 0);
-        headers.put("username", 1);
-        headers.put("password", 2);
+        headers.put("username", 0);
+        headers.put("password", 1);
         if (csvFile.length() != 0) {
             save();
         } else {
@@ -31,12 +31,9 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
                 String row;
                 while ((row = reader.readLine()) != null) {
                     String[] col = row.split(",");
-                    String userid = String.valueOf(col[headers.get("userid")]);
                     String username = String.valueOf(col[headers.get("username")]);
                     String password = String.valueOf(col[headers.get("password")]);
-//                    User oldUser = UserFactory.createUser(username, password);
-//                    oldUser.setUserid(userid);
-//                    accounts.put(userid, oldUser);
+                    accounts.put(username, password);
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -65,11 +62,8 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
 
     @Override
     public void save(EditInputData editInputData) {
-        User editingUser = accounts.get(editInputData.getUserid());
-        editingUser.setUsername(editInputData.getNewUsername());
-        editingUser.setPassword(editInputData.getNewPassword());
-        accounts.remove(editInputData.getUserid());
-        accounts.put(editingUser.getUserID(), editingUser);
+        accounts.remove(editInputData.getCurrentUsername());
+        accounts.put(editInputData.getNewUsername(), editInputData.getNewPassword());
         this.save();
     }
 
@@ -80,9 +74,9 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
             writer.write(String.join(",", headers.keySet()));
             writer.newLine();
 
-            for (User user : accounts.values()) {
+            for (Entry<String, String> entry : accounts.entrySet()) {
                 String line = "%s,%s,%s".formatted(
-                        user.getUserID(), user.getUsername(), user.getPassword());
+                        entry.getKey(), entry.getValue());
                 writer.write(line);
                 writer.newLine();
             }
