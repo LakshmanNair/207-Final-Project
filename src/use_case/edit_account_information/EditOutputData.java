@@ -9,10 +9,10 @@ public class EditOutputData {
         this.newPassword = newPassword;
     }
 
-    String getNewUsername() {
+    public String getNewUsername() {
         return newUsername;
     }
-    String getNewPassword() {
+    public String getNewPassword() {
         return newPassword;
     }
 

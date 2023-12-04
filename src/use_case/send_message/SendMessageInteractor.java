@@ -63,7 +63,7 @@ public class SendMessageInteractor implements SendMessageInputBoundary {
         @Override
         protected Void doInBackground() throws Exception {
             // Use inputData to send the message via APIAccessObject
-            apiAccessObject.sendMessage(inputData.getRecipient().getUsername(), inputData.getContent());
+            apiAccessObject.sendMessage(inputData.getRecipient(), inputData.getContent());
             return null;
         }
 

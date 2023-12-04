@@ -51,6 +51,8 @@ package data_access;
 //}
 
 import javax.jms.*;
+
+import entity.User;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,33 +69,45 @@ public class APIAccessObject {
         this.connection = connectionFactory.createConnection();
         this.connection.start();
         this.session = this.connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
         // Initialize maps for consumers and producers
         consumerMap = new HashMap<>();
         producerMap = new HashMap<>();
     }
 
     // Method to create a chat session between two users
-    public void createChatSession(String user1, String user2) throws JMSException {
-        String chatQueueName = user1 + "_" + user2;
+// Method to create a chat session between two users
+    public void createChatSession(User sender, User receiver) throws JMSException {
+        String chatQueueName = sender.getUsername() + "_" + receiver.getUsername();
         Destination destination = this.session.createQueue(chatQueueName);
 
         // Create producer and consumer for both users
-        producerMap.put(user1, this.session.createProducer(destination));
-        consumerMap.put(user1, this.session.createConsumer(destination));
+        MessageProducer senderProducer = this.session.createProducer(destination);
+        MessageConsumer senderConsumer = this.session.createConsumer(destination);
 
-        producerMap.put(user2, this.session.createProducer(destination));
-        consumerMap.put(user2, this.session.createConsumer(destination));
+        MessageProducer receiverProducer = this.session.createProducer(destination);
+        MessageConsumer receiverConsumer = this.session.createConsumer(destination);
+
+        // Use the usernames as keys for the producer and consumer maps
+        producerMap.put(sender.getUsername(), senderProducer);
+        consumerMap.put(sender.getUsername(), senderConsumer);
+
+        producerMap.put(receiver.getUsername(), receiverProducer);
+        consumerMap.put(receiver.getUsername(), receiverConsumer);
     }
 
-    // Method to send a message from a user
-    public void sendMessage(String user, String text) throws JMSException {
-        MessageProducer producer = producerMap.get(user);
+
+    public void sendMessage(User user, String text) throws JMSException {
+        // Extract the username from the User object
+        String username = user.getUsername();
+
+        // Retrieve the producer using the username
+        MessageProducer producer = producerMap.get(username);
         if (producer != null) {
             TextMessage message = this.session.createTextMessage(text);
             producer.send(message);
+        } else {
         }
-    }
+        }
 
     // Method to receive messages for a user
     public String receiveMessage(String user) throws JMSException {

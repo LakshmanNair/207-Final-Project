@@ -35,7 +35,7 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
                 String header = reader.readLine();
 
-                assert header.equals("username,password,creation_time");
+                assert header.equals("username,password");
 
                 String row;
                 while ((row = reader.readLine()) != null) {

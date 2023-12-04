@@ -10,7 +10,9 @@ public class GroupChatState {
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public GroupChatState() {}
+    public GroupChatState(User user) {
+        this.user=user;
+    }
     public User getUser(){return user;}
     public String getUsername() {
         return user.getUsername();

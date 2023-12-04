@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="jcl-over-slf4j-1.7.36">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.17.6/lib/jcl-over-slf4j-1.7.36.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/apache-activemq-5.17.6/lib/slf4j-api-1.7.36.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/lib/optional" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/apache-activemq-5.17.6/lib/optional" recursive="false" />
+  </library>
+</component>
