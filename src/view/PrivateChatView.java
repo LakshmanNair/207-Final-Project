@@ -96,6 +96,7 @@ import interface_adapter.PrivateChat.PrivateChatController;
 import data_access.CreateAccountDataAccessObject;
 import interface_adapter.logged_in.LoggedInState;
 
+import javax.jms.JMSException;
 import javax.swing.*;
 import java.awt.*;
 
@@ -147,7 +148,13 @@ public class PrivateChatView extends JFrame implements ChatView {
         add(inputPanel, BorderLayout.SOUTH);
 
         // Action listener for the send button
-        sendButton.addActionListener(e -> sendMessage());
+        sendButton.addActionListener(e -> {
+            try {
+                sendMessage();
+            } catch (JMSException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     private void initializeFrame() {
@@ -155,7 +162,7 @@ public class PrivateChatView extends JFrame implements ChatView {
         setVisible(true);
     }
 
-    private void sendMessage() {
+    private void sendMessage() throws JMSException {
         String recipientUsername = recipientField.getText();
         String message = inputField.getText();
         if (!recipientUsername.isEmpty() && !message.isEmpty()) {

@@ -83,7 +83,7 @@ public class Application {
                         SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
                         PrivateChatView chatView = new PrivateChatView();
                         PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("bb", "pass"), new User("xx", "pass"), apiAccessObject, chatView);
+                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("tester1", "pass"), new User("tester2", "pass"), apiAccessObject, chatView);
 
                         sendMessageInteractor.setOutputBoundary(chatPresenter);
                         chatView.setController(chatController);

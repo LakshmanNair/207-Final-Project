@@ -8,6 +8,7 @@ import use_case.send_message.SendMessageInputData;
 import view.PrivateChatView;
 
 import javax.jms.JMSException;
+import javax.sql.RowSet;
 
 public class PrivateChatController {
     private final SendMessageInputBoundary sendMessageInteractor;
@@ -35,6 +36,10 @@ public class PrivateChatController {
         startChatSession();
     }
 
+//    public User getCurrentUser() {
+//        return new User(menuState.getUsername(), "");
+//    }
+
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
@@ -48,14 +53,14 @@ public class PrivateChatController {
         SendMessageInputData inputData = new SendMessageInputData(messageContent, currentUser, recipient);
         apiAccessObject.createChatSession(currentUser, recipient);
         sendMessageInteractor.sendMessage(inputData);
-        chatView.displayMessage("You: " + messageContent); // Update the chat window with the sent message
-
+//        chatView.displayMessage("You: " + messageContent); // Update the chat window with the sent message
+// check if sending, pull daniels, change application / setCurrent user properly
     }
 
 
     private void startChatSession() {
         // Start ReceiveMessageWorker to listen for messages from the recipient
-        ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, username, chatView);
+        ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, recipient.getUsername(), chatView);
         messageWorker.execute();
     }
 }
