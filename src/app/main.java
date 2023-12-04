@@ -56,6 +56,9 @@ public class main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
+        MenuScreen menuScreen = new MenuScreen();
+        views.add(menuScreen, "MenuScreen");
+
         viewManagerModel.setActiveView(createAccountView.viewName);
         viewManagerModel.firePropertyChanged();
 

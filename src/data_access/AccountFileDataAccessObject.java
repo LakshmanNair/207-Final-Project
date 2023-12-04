@@ -5,6 +5,7 @@ import use_case.edit_account_information.EditInputData;
 
 import entity.User;
 import entity.UserFactory;
+import use_case.login.LoginUserDataAccessInterface;
 
 import java.io.*;
 import java.util.HashMap;
@@ -93,8 +94,6 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
             throw new RuntimeException(e);
         }
     }
-
-
 }
 
 

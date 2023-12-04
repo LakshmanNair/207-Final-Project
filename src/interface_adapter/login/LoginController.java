@@ -24,5 +24,4 @@ public class LoginController {
     public void switchToSignup() {
         viewManager.setActiveView("SignupView");
     }
-
 }

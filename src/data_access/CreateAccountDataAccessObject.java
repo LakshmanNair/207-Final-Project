@@ -83,7 +83,6 @@ public class CreateAccountDataAccessObject implements CreateAccountDataAccessInt
         }
     }
 
-
     /**
      * Return whether a user exists with username identifier.
      *

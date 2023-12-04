@@ -5,6 +5,7 @@ import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+import view.MenuScreen;
 
 public class LoginPresenter implements LoginOutputBoundary {
 
@@ -21,32 +22,17 @@ public class LoginPresenter implements LoginOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(LoginOutputData response) {
-        // On success, switch to the logged in view.
+    public void loginSuccess(LoginOutputData outputData) {
 
-        LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setUsername(response.getUsername());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
-
-        this.viewManagerModel.setActiveView(loggedInViewModel.getViewName());
+        this.viewManagerModel.setActiveView("MenuScreen");
         this.viewManagerModel.firePropertyChanged();
-    }
-
-    @Override
-    public void prepareFailView(String error) {
-        LoginState loginState = loginViewModel.getState();
-        loginState.setUsernameError(error);
-        loginViewModel.firePropertyChanged();
-    }
-
-    @Override
-    public void loginSuccess(LoginOutputData user) {
-
+        MenuState.setUsername(outputData.getUsername());
     }
 
     @Override
     public void loginFail(String error) {
-
+        LoginState loginState = loginViewModel.getState();
+        loginState.setUsernameError(error);
+        loginViewModel.firePropertyChanged();
     }
 }
