@@ -73,8 +73,8 @@ public class SendMessageInteractor implements SendMessageInputBoundary {
             try {
                 get(); // Ensure any exception is caught
                 Message sentMessage = new MessageFactory().createMessage(inputData);
-                SendMessageOutputData outputData = new SendMessageOutputData(true, sentMessage.getContent(), inputData.getSender(), inputData.getRecipient()); //used to be inputData.getContent()
-                sendMessageOutputBoundary.presentMessageSendingResult(outputData);
+//                SendMessageOutputData outputData = new SendMessageOutputData(true, sentMessage.getContent(), inputData.getSender(), inputData.getRecipient()); //used to be inputData.getContent()
+//                sendMessageOutputBoundary.presentMessageSendingResult(outputData);
             } catch (Exception e) {
                 Message sentMessage = new MessageFactory().createMessage(inputData);
                 SendMessageOutputData outputData = new SendMessageOutputData(false, "Failed to send message: " + e.getMessage(), inputData.getSender(), inputData.getRecipient());
