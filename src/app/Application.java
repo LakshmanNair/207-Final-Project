@@ -4,7 +4,7 @@ import data_access.APIAccessObject;
 import entity.User;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
-
+import use_case.send_message.SendMessageInputData;
 
 import org.apache.activemq.ActiveMQConnection;
 import use_case.send_message.SendMessageInteractor;
