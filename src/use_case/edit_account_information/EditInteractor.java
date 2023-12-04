@@ -1,12 +1,14 @@
 package use_case.edit_account_information;
 
 public class EditInteractor implements EditInputBoundary{
-    final EditDataAccessInterface editDataAccessObject;
-    final EditOutputBoundary editPresenter;
+    private final EditDataAccessInterface editDataAccessObject;
+    private EditOutputBoundary editPresenter;
 
-    public EditInteractor(EditDataAccessInterface editDataAccessObject,
-                          EditOutputBoundary editPresenter) {
+    public EditInteractor(EditDataAccessInterface editDataAccessObject) {
         this.editDataAccessObject = editDataAccessObject;
+    }
+
+    public void setOutputBoundary(EditOutputBoundary editPresenter) {
         this.editPresenter = editPresenter;
     }
 

@@ -1,18 +1,27 @@
 package app;
 
 import data_access.APIAccessObject;
+import data_access.AccountFileDataAccessObject;
 import entity.User;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
 
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.editAccountInfo.EditAccountInfoController;
+import interface_adapter.editAccountInfo.EditAccountInfoPresenter;
+import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
+import interface_adapter.logged_in.LoggedInViewModel;
 import org.apache.activemq.ActiveMQConnection;
+import use_case.edit_account_information.EditInteractor;
 import use_case.send_message.SendMessageInteractor;
 import view.MenuScreen;
 import view.PrivateChatView;
+import view.EditAccountInfoView;
 
 import javax.jms.JMSException;
 import javax.swing.*;
+import java.awt.*;
 
 //public class main {
 //    public static void main(String[] args) throws JMSException {
@@ -86,7 +95,17 @@ public class Application {
                 });
 
                 menuScreen.setEditAccountInfoButtonListener(e -> {
-                    // open edit account info screen
+                    AccountFileDataAccessObject editAccountInfoDataAccessObject = new AccountFileDataAccessObject("./users.csv");
+                    EditAccountInfoViewModel editAccountInfoViewModel = new EditAccountInfoViewModel();
+                    EditInteractor editInteractor = new EditInteractor(editAccountInfoDataAccessObject);
+                    EditAccountInfoView editAccountInfoView = new EditAccountInfoView(editAccountInfoViewModel);
+                    EditAccountInfoController editAccountInfoController = new EditAccountInfoController(editInteractor);
+                    EditAccountInfoPresenter editPresenter = new EditAccountInfoPresenter(editAccountInfoView);
+
+                    editInteractor.setOutputBoundary(editPresenter);
+                    editAccountInfoView.setController(editAccountInfoController);
+                    editAccountInfoView.pack();
+                    editAccountInfoView.setVisible(true);
                 });
 
                 // Show the MenuScreen

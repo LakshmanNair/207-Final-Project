@@ -11,6 +11,8 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="apache-activemq-5.18" level="project" />
     <orderEntry type="library" name="apache-activemq-5.17" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="optional" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
