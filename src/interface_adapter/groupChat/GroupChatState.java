@@ -1,7 +1,6 @@
 package interface_adapter.groupChat;
 
 import entity.User;
-import interface_adapter.logged_in.LoggedInState;
 
 public class GroupChatState {
     private User user;
@@ -11,7 +10,9 @@ public class GroupChatState {
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public GroupChatState() {}
+    public GroupChatState(User user) {
+        this.user=user;
+    }
     public User getUser(){return user;}
     public String getUsername() {
         return user.getUsername();

@@ -25,7 +25,7 @@ class LabelTextPanel extends JPanel {
 }
 
 public class CreateAccountView extends JPanel implements ActionListener, PropertyChangeListener{
-    public final String viewname = "SignupView";
+    public final String viewName = "SignupView";
 
     private final CreateAccountViewModel createAccountViewModel;
     private final JTextField usernameInputField = new JTextField(15);
@@ -34,8 +34,8 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
     private final CreateAccountController createAccountController;
 
     private final JButton createAccount;
-    //private final JButton cancel;
-    public String viewName;
+
+    private final JButton logIn;
 
     private final ViewManagerModel viewManager;
 
@@ -59,13 +59,11 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
         JPanel buttons = new JPanel();
         createAccount = new JButton(CreateAccountViewModel.CREATE_ACCOUNT_BUTTON_LABEL);
         buttons.add(createAccount);
-        //cancel = new JButton(CreateAccountViewModel.CANCEL_BUTTON_LABEL);
-        //buttons.add(cancel);
-        //this.createAccount = createAccount;
-        //this.cancel = cancel;
+
+        logIn = new JButton(CreateAccountViewModel.LOGIN_BUTTON);
+        buttons.add(logIn);
 
         createAccount.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
                 evt -> {
                     if (evt.getSource().equals(createAccount)) {
                         CreateAccountState currentState = createAccountViewModel.getState();
@@ -78,6 +76,12 @@ public class CreateAccountView extends JPanel implements ActionListener, Propert
                     }
                 }
         );
+
+        logIn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                createAccountController.switchToLogin();
+            }
+        });
 
         usernameInputField.addKeyListener(
                 new KeyListener() {

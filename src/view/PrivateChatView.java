@@ -93,7 +93,9 @@ package view;
 
 import entity.User;
 import interface_adapter.PrivateChat.PrivateChatController;
+import data_access.CreateAccountDataAccessObject;
 
+import javax.jms.JMSException;
 import javax.swing.*;
 import java.awt.*;
 
@@ -103,6 +105,7 @@ public class PrivateChatView extends JFrame implements ChatView {
     private JTextField recipientField; // For entering the recipient's username
     private JButton sendButton;
     private PrivateChatController controller;
+    private CreateAccountDataAccessObject createAccountDataAccessObject;
 
     public PrivateChatView() {
         createUIComponents();
@@ -143,7 +146,13 @@ public class PrivateChatView extends JFrame implements ChatView {
         add(inputPanel, BorderLayout.SOUTH);
 
         // Action listener for the send button
-        sendButton.addActionListener(e -> sendMessage());
+        sendButton.addActionListener(e -> {
+            try {
+                sendMessage();
+            } catch (JMSException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     private void initializeFrame() {
@@ -151,19 +160,20 @@ public class PrivateChatView extends JFrame implements ChatView {
         setVisible(true);
     }
 
-    private void sendMessage() {
-        String recipient = recipientField.getText();
+    private void sendMessage() throws JMSException {
+        String recipientUsername = recipientField.getText();
         String message = inputField.getText();
-        if (!recipient.isEmpty() && !message.isEmpty()) {
-            // Set the recipient in the controller
-            controller.setRecipient(new User(recipient, "")); // Assuming User constructor accepts username and password
+        if (!recipientUsername.isEmpty() && !message.isEmpty()) {
+            controller.setRecipient(new User(recipientUsername, "")); // Assuming User constructor accepts username and password
             controller.onSendMessage(message);
             inputField.setText(""); // Clear the message input field after sending
+            displayMessage("You: " + message); // Update the chat window with the sent message
         } else {
-            // Handle the case where recipient or message is empty
             displayError("Recipient and message cannot be empty.");
         }
     }
+
+
 
     @Override
     public void displayMessage(String message) {

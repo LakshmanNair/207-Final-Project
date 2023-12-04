@@ -3,7 +3,6 @@ package app;
 import entity.UserFactory;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import use_case.login.LoginUserDataAccessInterface;
 import view.CreateAccountView;
@@ -36,7 +35,6 @@ public class main {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         LoginViewModel loginViewModel = new LoginViewModel();
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         CreateAccountViewModel createAccountViewModel = new CreateAccountViewModel();
 
         CreateAccountDataAccessObject userDataAccessObject;
@@ -49,8 +47,15 @@ public class main {
         CreateAccountView createAccountView = CreateAccountUseCaseFactory.create(viewManagerModel, createAccountViewModel, userDataAccessObject);
         views.add(createAccountView, createAccountView.viewName);
 
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
+
+        MenuScreen menuScreen = new MenuScreen();
+        views.add(menuScreen, "MenuScreen");
+
+        // TODO: fix why private chat view is popping up first
+//        PrivateChatView privateChatView = new PrivateChatView();
+//        views.add(privateChatView, "PrivateChatView");
 
         viewManagerModel.setActiveView(createAccountView.viewName);
         viewManagerModel.firePropertyChanged();
@@ -64,4 +69,3 @@ public class main {
         application.setVisible(true);
     }
 }
-

@@ -1,13 +1,15 @@
 package data_access;
 import data_access.APIAccessObject;
+import entity.User;
+
 import javax.swing.SwingWorker;
 
 public class SendMessageWorker extends SwingWorker<Void, Void> {
     private final APIAccessObject apiAccessObject;
-    private final String user;
+    private final User user;
     private final String message;
 
-    public SendMessageWorker(APIAccessObject apiAccessObject, String user, String message) {
+    public SendMessageWorker(APIAccessObject apiAccessObject, User user, String message) {
         this.apiAccessObject = apiAccessObject;
         this.user = user;
         this.message = message;

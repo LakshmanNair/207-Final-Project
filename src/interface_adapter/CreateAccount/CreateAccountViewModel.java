@@ -11,9 +11,9 @@ public class CreateAccountViewModel extends ViewModel
     public static final String USERNAME_LABEL = "Enter username";
     public static final String PASSWORD_LABEL = "Enter password";
     public static final String REPEAT_PASSWORD_LABEL = "Enter password again";
-
-    //public static final String CANCEL_BUTTON_LABEL = "Cancel";
     public static final String CREATE_ACCOUNT_BUTTON_LABEL = "Create Account";
+
+    public static final String LOGIN_BUTTON = "Log In";
 
     private CreateAccountState state = new CreateAccountState();
 

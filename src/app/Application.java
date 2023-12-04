@@ -1,18 +1,30 @@
 package app;
 
 import data_access.APIAccessObject;
+import data_access.AccountFileDataAccessObject;
+import data_access.ReceiveMessageWorker;
 import entity.User;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
+import use_case.send_message.SendMessageInputData;
 
-
+import interface_adapter.ViewManagerModel;
+import interface_adapter.editAccountInfo.EditAccountInfoController;
+import interface_adapter.editAccountInfo.EditAccountInfoPresenter;
+import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
+import interface_adapter.groupChat.GroupChatState;
+import interface_adapter.groupChat.GroupChatViewModel;
 import org.apache.activemq.ActiveMQConnection;
+import use_case.edit_account_information.EditInteractor;
 import use_case.send_message.SendMessageInteractor;
+import view.GroupChatView;
 import view.MenuScreen;
 import view.PrivateChatView;
+import view.EditAccountInfoView;
 
 import javax.jms.JMSException;
 import javax.swing.*;
+import java.awt.*;
 
 //public class main {
 //    public static void main(String[] args) throws JMSException {
@@ -59,38 +71,114 @@ import javax.swing.*;
 //    }
 //}
 
-
-public class Application {
-    public static void showChat() {
+// Daniel's
+public class Application extends JPanel {
+    public static void showPrivateChat(String username) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                MenuScreen menuScreen = new MenuScreen();
-                menuScreen.setPrivateChatButtonListener(e -> {
-                    try {
-                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
-                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-                        PrivateChatView chatView = new PrivateChatView();
-                        PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("test", "pass"), apiAccessObject, chatView);
+                try {
+                    APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+                    SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+                    PrivateChatView chatView = new PrivateChatView();
+                    PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
+                    PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User(username, "pass"), new User("tester2", "pass"), apiAccessObject, chatView);
 
-                        sendMessageInteractor.setOutputBoundary(chatPresenter);
-                        chatView.setController(chatController);
-                        chatView.setVisible(true);
-                    } catch (JMSException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-                menuScreen.setGroupChatButtonListener(e -> {
-                    // Logic to open group chat
-                });
-
-                // Show the MenuScreen
-//                menuScreen.createAndShowGUI();
+                    sendMessageInteractor.setOutputBoundary(chatPresenter);
+                    chatView.setController(chatController);
+                    ReceiveMessageWorker receiveMessageWorker = new ReceiveMessageWorker(apiAccessObject, "tester2", chatView);
+                    chatView.setVisible(true);
+                } catch (JMSException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
-        });
-    }
 
-    // Main method or other methods...
+//     public static void showGroupChat()
+
+
+//public class Application {
+//    public static void showChat(String username) {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                MenuScreen menuScreen = new MenuScreen();
+//                menuScreen.setPrivateChatButtonListener(e -> {
+//                    try {
+//                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+//                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+//                        PrivateChatView chatView = new PrivateChatView();
+//                        PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
+//                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("tester1", "pass"), new User("tester2", "pass"), apiAccessObject, chatView);
+//
+//                        sendMessageInteractor.setOutputBoundary(chatPresenter);
+//                        chatView.setController(chatController);
+//                        chatView.setVisible(true);
+//                    } catch (JMSException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                });
+//
+//                menuScreen.setGroupChatButtonListener(e -> {
+//                    try {
+//                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+//                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+//
+//                        GroupChatState groupChatState=new GroupChatState(new User(username,""));
+//                        GroupChatViewModel groupChatViewModel=new GroupChatViewModel(groupChatState);
+//                        GroupChatView groupChatView=GroupChatCaseFactory.create(groupChatViewModel,sendMessageInteractor);
+//                        groupChatView.setVisible(true);
+//                    } catch (JMSException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                    // Logic to open group chat
+//                });
+//
+//                menuScreen.setEditAccountInfoButtonListener(e -> {
+//                    AccountFileDataAccessObject editAccountInfoDataAccessObject = new AccountFileDataAccessObject("./users.csv");
+//                    EditAccountInfoViewModel editAccountInfoViewModel = new EditAccountInfoViewModel();
+//                    EditInteractor editInteractor = new EditInteractor(editAccountInfoDataAccessObject);
+//                    EditAccountInfoView editAccountInfoView = new EditAccountInfoView(editAccountInfoViewModel);
+//                    EditAccountInfoController editAccountInfoController = new EditAccountInfoController(editInteractor);
+//                    EditAccountInfoPresenter editPresenter = new EditAccountInfoPresenter(editAccountInfoView);
+//
+//                    editInteractor.setOutputBoundary(editPresenter);
+//                    editAccountInfoView.setController(editAccountInfoController);
+//                    editAccountInfoView.pack();
+//                    editAccountInfoView.setVisible(true);
+//                });
+//
+//                // Show the MenuScreen
+////                menuScreen.createAndShowGUI();
+//            }
+//        });
+//    }
+//    public class Application {
+//        public static void showChat(String username) {
+//            SwingUtilities.invokeLater(new Runnable() {
+//                public void run() {
+//                    MenuScreen menuScreen = new MenuScreen();
+//                    menuScreen.setPrivateChatButtonListener(e -> {
+//                        try {
+//                            APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+//                            SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+//                            PrivateChatView chatView = new PrivateChatView();
+//                            PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
+//                            PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User(username, "pass"), new User("tester2", "pass"), apiAccessObject, chatView);
+//
+//                            sendMessageInteractor.setOutputBoundary(chatPresenter);
+//                            chatView.setController(chatController);
+//                            ReceiveMessageWorker receiveMessageWorker = new ReceiveMessageWorker(apiAccessObject, "tester2", chatView);
+//                            chatView.setVisible(true);
+//                        } catch (JMSException ex) {
+//                            throw new RuntimeException(ex);
+//                        }
+//                    });
+//
+//                    public static void showGroupChat() {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                // Logic to open group chat
+//            };
+        });
+    };
 }
+//
 
