@@ -2,8 +2,6 @@ package app;
 
 import entity.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
 import org.junit.jupiter.api.Test;
 import use_case.login.LoginUserDataAccessInterface;
@@ -20,7 +18,6 @@ class LoginUseCaseFactoryTest {
         // Arrange
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         LoginViewModel loginViewModel = new LoginViewModel();
-        LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
         LoginUserDataAccessInterface userDataAccessObject = new LoginUserDataAccessInterface() {
             @Override
             public boolean existsByName(String identifier) {
@@ -38,7 +35,7 @@ class LoginUseCaseFactoryTest {
         };
 
         // Act
-        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+        LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, userDataAccessObject);
 
         // Assert
         assertNotNull(loginView);

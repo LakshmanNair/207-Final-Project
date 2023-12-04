@@ -7,18 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserInterfaceTest {
 
     @Test
-    public void getUserID_ShouldReturnUserID() {
-        // Arrange
-        User user = new User("JohnDoe", "password");
-
-        // Act
-        String userID = user.getUserID();
-
-        // Assert
-        assertEquals("1", userID);
-    }
-
-    @Test
     public void getUsername_ShouldReturnUsername() {
         // Arrange
         User user = new User("JaneDoe", "password");

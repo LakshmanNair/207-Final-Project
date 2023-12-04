@@ -7,19 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     @Test
-    public void getUserID_ShouldReturnUserID() {
-        // Arrange
-        User user = new User("john_doe", "password");
-
-        // Act
-        String userID = user.getUserID();
-
-        // Assert
-        assertNotNull(userID);
-        assertFalse(userID.isEmpty());
-    }
-
-    @Test
     public void getUsername_ShouldReturnUsername() {
         // Arrange
         User user = new User("jane_doe", "password");
