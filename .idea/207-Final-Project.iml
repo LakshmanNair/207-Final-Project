@@ -11,5 +11,8 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="apache-activemq-5.18" level="project" />
     <orderEntry type="library" name="apache-activemq-5.17" level="project" />
+    <orderEntry type="library" name="activemq-all-5.18.3" level="project" />
+    <orderEntry type="library" name="activemq-all-5.17.6" level="project" />
+    <orderEntry type="library" name="jcl-over-slf4j-1.7.36" level="project" />
   </component>
 </module>

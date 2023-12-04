@@ -9,7 +9,7 @@ import view.PrivateChatView;
 
 public class PrivateChatController {
     private final SendMessageInputBoundary sendMessageInteractor;
-    private final User currentUser; // The current user
+    private User currentUser; // The current user
     private User recipient;    // The recipient user
     private final APIAccessObject apiAccessObject;
     private final PrivateChatView chatView;
@@ -32,6 +32,10 @@ public class PrivateChatController {
         startChatSession();
     }
 
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
     public void onSendMessage(String messageContent) {
         if (recipient == null) {
             chatView.displayError("Recipient not set.");
@@ -40,11 +44,14 @@ public class PrivateChatController {
 
         SendMessageInputData inputData = new SendMessageInputData(messageContent, currentUser, recipient);
         sendMessageInteractor.sendMessage(inputData);
+        chatView.displayMessage("You: " + messageContent); // Update the chat window with the sent message
     }
+
+
 
     private void startChatSession() {
         // Start ReceiveMessageWorker to listen for messages from the recipient
-        ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, sendMessageInputData);
+        ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, recipient.getUsername(), chatView);
         messageWorker.execute();
     }
 }
