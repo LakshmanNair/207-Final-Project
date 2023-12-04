@@ -86,6 +86,7 @@ public class Application extends JPanel {
                     sendMessageInteractor.setOutputBoundary(chatPresenter);
                     chatView.setController(chatController);
                     ReceiveMessageWorker receiveMessageWorker = new ReceiveMessageWorker(apiAccessObject, "tester2", chatView);
+                    receiveMessageWorker.execute();
                     chatView.setVisible(true);
                 } catch (JMSException ex) {
                     throw new RuntimeException(ex);

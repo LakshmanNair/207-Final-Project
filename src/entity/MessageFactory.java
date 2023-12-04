@@ -4,7 +4,7 @@ import use_case.send_message.SendMessageInputData;
 
 import java.time.LocalDateTime;
 
-public class MessageFactory {
+public class MessageFactory implements MessageFactoryInterface {
 
     public Message createMessage(SendMessageInputData sendMessageInputData) {
         String content = sendMessageInputData.getContent();
