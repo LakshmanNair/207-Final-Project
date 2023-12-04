@@ -88,6 +88,8 @@ import java.awt.*;
 //                } catch (JMSException ex) {
 //                    throw new RuntimeException(ex);
 //                }
+//     public static void showGroupChat() {}
+
 public class Application {
     public static void showChat(String username) {
         SwingUtilities.invokeLater(new Runnable() {
