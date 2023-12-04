@@ -1,22 +1,18 @@
 package app;
 
-import data_access.APIAccessObject;
-import entity.User;
 import entity.UserFactory;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
-import interface_adapter.PrivateChat.PrivateChatController;
-import interface_adapter.PrivateChat.PrivateChatPresenter;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.login.LoginViewModel;
-import org.apache.activemq.ActiveMQConnection;
 import use_case.login.LoginUserDataAccessInterface;
-import use_case.send_message.SendMessageInteractor;
-import view.*;
+import view.CreateAccountView;
+import view.LoginView;
+import view.ViewManager;
 import data_access.CreateAccountDataAccessObject;
 
-import javax.jms.JMSException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class main {
