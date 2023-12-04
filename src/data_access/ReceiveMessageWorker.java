@@ -33,31 +33,4 @@ public class ReceiveMessageWorker extends SwingWorker<Void, Void> {
         }
         return null;
     }
-
-//    private boolean isChatWindowOpenForSender(SendMessageInputData inputData) {
-//        return openChatWindows.containsKey(inputData.getSender().getUsername());
-//    }
-//
-//    private void openChatWindowForSender(SendMessageInputData inputData) {
-//        if (!openChatWindows.containsKey(inputData.getSender().getUsername())) {
-//            PrivateChatView chatView = new PrivateChatView();
-//            User sender = new User(inputData.getSender().getUsername(), ""); // Placeholder for sender user
-//            User recipient = new User(inputData.getRecipient().getUsername(), ""); // Placeholder for recipient user
-//
-//            SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-//            PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, recipient, sender, apiAccessObject, chatView);
-//
-//            chatView.setController(chatController);
-//            chatView.setVisible(true); // Show the chat window
-//            openChatWindows.put(inputData.getSender().getUsername(), chatView); // Keep track of the open window
-//        }
-//    }
-//
-//    private void updateChatWindowWithMessage(SendMessageInputData input) {
-//        PrivateChatView chatView = openChatWindows.get(input.getSender().getUsername());
-//        if (chatView != null) {
-//            chatView.displayMessage(input.getContent());
-//        }
-//    }
-
 }

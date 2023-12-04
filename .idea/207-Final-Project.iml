@@ -51,5 +51,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="activemq-all-5.18.3" level="project" />
+    <orderEntry type="library" name="activemq-all-5.17.61" level="project" />
+    <orderEntry type="library" name="jcl-over-slf4j-1.7.361" level="project" />
   </component>
 </module>
