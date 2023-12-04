@@ -69,7 +69,6 @@ public class APIAccessObject {
         this.connection = connectionFactory.createConnection();
         this.connection.start();
         this.session = this.connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
         // Initialize maps for consumers and producers
         consumerMap = new HashMap<>();
         producerMap = new HashMap<>();

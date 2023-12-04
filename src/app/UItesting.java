@@ -1,5 +1,4 @@
 package app;
-
 import data_access.APIAccessObject;
 import data_access.ReceiveMessageWorker;
 import entity.User;
@@ -31,11 +30,6 @@ public class UItesting {
             menuScreen.setGroupChatButtonListener(e -> {
                 // Logic for opening group chat
             });
-
-            // Add the MenuScreen to the application window and display it
-            application.add(menuScreen);
-            application.pack();
-            application.setVisible(true);
         });
     }
 
@@ -48,8 +42,9 @@ public class UItesting {
         // Initialize the controller
         APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
         SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-        User currentUser = ;
-        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, currentUser, apiAccessObject, chatView);
+        User currentUser = new User("a", "a");
+        User recipient = new User("b", "b");
+        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, currentUser, recipient, apiAccessObject, chatView);
 
         // Set the controller in the view
         chatView.setController(chatController);
