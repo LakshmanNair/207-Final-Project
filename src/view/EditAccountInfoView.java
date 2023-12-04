@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.editAccountInfo.EditAccountInfoController;
 import interface_adapter.editAccountInfo.EditAccountInfoState;
 import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
@@ -13,7 +14,7 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class EditAccountInfoView extends JPanel implements ActionListener, PropertyChangeListener {
+public class EditAccountInfoView extends JFrame implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "Edit Account Info";
 
@@ -22,15 +23,14 @@ public class EditAccountInfoView extends JPanel implements ActionListener, Prope
     private final JPasswordField currentPasswordInputField = new JPasswordField(15);
     private final JTextField newUsernameInputField = new JTextField(15);
     private final JPasswordField newPasswordInputField = new JPasswordField(15);
-    private final EditAccountInfoController editAccountInfoController;
+    private EditAccountInfoController controller;
+
+    public JLabel confirmedMessage = new JLabel("No changes made");
 
     private final JButton confirm;
-    private final JButton cancel;
 
-    public EditAccountInfoView(EditAccountInfoController controller,
-                               EditAccountInfoViewModel editAccountInfoViewModel) {
+    public EditAccountInfoView(EditAccountInfoViewModel editAccountInfoViewModel) {
 
-        this.editAccountInfoController = controller;
         this.editAccountInfoViewModel = editAccountInfoViewModel;
         editAccountInfoViewModel.addPropertyChangeListener(this);
 
@@ -46,30 +46,20 @@ public class EditAccountInfoView extends JPanel implements ActionListener, Prope
         LabelTextPanel newPasswordInfo = new LabelTextPanel(
                 new JLabel(editAccountInfoViewModel.NEW_PASSWORD_LABEL), newPasswordInputField);
 
+        confirmedMessage.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         JPanel buttons = new JPanel();
         confirm = new JButton(editAccountInfoViewModel.CONFIRM_BUTTON_LABEL);
         buttons.add(confirm);
-        cancel = new JButton(editAccountInfoViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
 
         confirm.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(confirm)) {
-                            editAccountInfoController.execute(currentUsernameInputField.getText(),
+                            controller.execute(currentUsernameInputField.getText(),
                                     String.valueOf(currentPasswordInputField.getPassword()),
                                     newUsernameInputField.getText(),
                                     String.valueOf(newPasswordInputField.getPassword()));
-                        }
-                    }
-                }
-        );
-
-        cancel.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        if (evt.getSource().equals(confirm)) {
-                            editAccountInfoController.switchToLoggedIn();
                         }
                     }
                 }
@@ -145,15 +135,35 @@ public class EditAccountInfoView extends JPanel implements ActionListener, Prope
                 });
 
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
         this.add(title);
         this.add(currentUsernameInfo);
         this.add(currentPasswordInfo);
         this.add(newUsernameInfo);
         this.add(newPasswordInfo);
+        this.add(confirmedMessage);
         this.add(buttons);
 
+        this.setTitle("Edit Account Info");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+
+    }
+
+    public void setController(EditAccountInfoController controller) {
+        this.controller = controller;
+        // You might also want to set up action listeners here that depend on the controller
+    }
+
+    public void success() {
+        confirmedMessage.setText(editAccountInfoViewModel.COMPLETE_LABEL);
+    }
+
+    public void failure(String error) {
+        confirmedMessage.setText(error);
     }
 
     @Override

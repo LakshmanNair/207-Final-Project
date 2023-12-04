@@ -14,7 +14,7 @@ public class EditAccountInfoViewModel extends ViewModel {
     public final String NEW_PASSWORD_LABEL = "New Password";
 
     public final String CONFIRM_BUTTON_LABEL = "Confirm";
-    public final String CANCEL_BUTTON_LABEL = "Cancel";
+    public final String COMPLETE_LABEL = "Changes confirmed";
 
     private EditAccountInfoState state = new EditAccountInfoState();
 

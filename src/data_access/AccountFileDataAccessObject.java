@@ -22,7 +22,7 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
         csvFile = new File(csvPath);
         headers.put("username", 0);
         headers.put("password", 1);
-        if (csvFile.length() != 0) {
+        if (csvFile.length() == 0) {
             save();
         } else {
             try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
@@ -48,8 +48,8 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
             String row;
             while ((row = reader.readLine()) != null) {
                 String[] col = row.split(",");
-                String checkingUsername = String.valueOf(col[headers.get("username")]);
-                String checkingPassword = String.valueOf(col[headers.get("password")]);
+                String checkingUsername = String.valueOf(col[headers.get("username")]).trim();
+                String checkingPassword = String.valueOf(col[headers.get("password")]).trim();
                 if (username.equals(checkingUsername) && password.equals(checkingPassword)) {
                     return true;
                 }
@@ -75,7 +75,7 @@ public class AccountFileDataAccessObject implements EditDataAccessInterface {
             writer.newLine();
 
             for (Entry<String, String> entry : accounts.entrySet()) {
-                String line = "%s,%s,%s".formatted(
+                String line = "%s,%s".formatted(
                         entry.getKey(), entry.getValue());
                 writer.write(line);
                 writer.newLine();
