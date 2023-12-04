@@ -11,10 +11,13 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.editAccountInfo.EditAccountInfoController;
 import interface_adapter.editAccountInfo.EditAccountInfoPresenter;
 import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
+import interface_adapter.groupChat.GroupChatState;
+import interface_adapter.groupChat.GroupChatViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import org.apache.activemq.ActiveMQConnection;
 import use_case.edit_account_information.EditInteractor;
 import use_case.send_message.SendMessageInteractor;
+import view.GroupChatView;
 import view.MenuScreen;
 import view.PrivateChatView;
 import view.EditAccountInfoView;
@@ -70,7 +73,7 @@ import java.awt.*;
 
 
 public class Application {
-    public static void showChat() {
+    public static void showChat(String username) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 MenuScreen menuScreen = new MenuScreen();
@@ -80,7 +83,7 @@ public class Application {
                         SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
                         PrivateChatView chatView = new PrivateChatView();
                         PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("test", "pass"), apiAccessObject, chatView);
+                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User(username, "pass"), apiAccessObject, chatView);
 
                         sendMessageInteractor.setOutputBoundary(chatPresenter);
                         chatView.setController(chatController);
@@ -91,6 +94,17 @@ public class Application {
                 });
 
                 menuScreen.setGroupChatButtonListener(e -> {
+                    try {
+                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+
+                        GroupChatState groupChatState=new GroupChatState(new User(username,""));
+                        GroupChatViewModel groupChatViewModel=new GroupChatViewModel(groupChatState);
+                        GroupChatView groupChatView=GroupChatCaseFactory.create(groupChatViewModel,sendMessageInteractor);
+                        groupChatView.setVisible(true);
+                    } catch (JMSException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     // Logic to open group chat
                 });
 

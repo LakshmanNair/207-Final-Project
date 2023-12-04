@@ -61,7 +61,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
         logIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                Application.showChat();
+                Application.showChat(loginViewModel.getState().getUsername());
 
             }
         });
