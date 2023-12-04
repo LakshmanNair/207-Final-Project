@@ -113,7 +113,7 @@ public class APIAccessObject {
     public String receiveMessage(String user) throws JMSException {
         MessageConsumer consumer = consumerMap.get(user);
         if (consumer != null) {
-            Message message = consumer.receive(1000); // Wait for 1 second
+            Message message = consumer.receive(5000); // Wait for 1 second
             if (message instanceof TextMessage) {
                 return ((TextMessage) message).getText();
             }
