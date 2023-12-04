@@ -61,6 +61,8 @@ public class main {
         viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
+        //need to create chat session
+
 //        public void LoginButtonListener(ActionListener listener) {
 //            privateChatButton.addActionListener(listener);
 //        }

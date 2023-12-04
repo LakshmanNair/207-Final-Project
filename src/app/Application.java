@@ -5,7 +5,7 @@ import data_access.AccountFileDataAccessObject;
 import entity.User;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
-
+import use_case.send_message.SendMessageInputData;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.editAccountInfo.EditAccountInfoController;
@@ -83,7 +83,7 @@ public class Application {
                         SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
                         PrivateChatView chatView = new PrivateChatView();
                         PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User(username, "pass"), apiAccessObject, chatView);
+                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("bb", "pass"), new User("xx", "pass"), apiAccessObject, chatView);
 
                         sendMessageInteractor.setOutputBoundary(chatPresenter);
                         chatView.setController(chatController);
