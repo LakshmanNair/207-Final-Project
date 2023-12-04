@@ -13,7 +13,6 @@ import interface_adapter.editAccountInfo.EditAccountInfoPresenter;
 import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
 import interface_adapter.groupChat.GroupChatState;
 import interface_adapter.groupChat.GroupChatViewModel;
-import interface_adapter.logged_in.LoggedInViewModel;
 import org.apache.activemq.ActiveMQConnection;
 import use_case.edit_account_information.EditInteractor;
 import use_case.send_message.SendMessageInteractor;

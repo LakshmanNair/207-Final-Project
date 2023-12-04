@@ -1,8 +1,6 @@
 package interface_adapter.editAccountInfo;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.logged_in.LoggedInViewModel;
 import use_case.edit_account_information.EditOutputBoundary;
 import use_case.edit_account_information.EditOutputData;
 import view.EditAccountInfoView;

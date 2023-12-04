@@ -5,6 +5,8 @@ import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
 import view.MenuScreen;
 
+import javax.swing.*;
+
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
@@ -29,5 +31,6 @@ public class LoginPresenter implements LoginOutputBoundary {
         LoginState loginState = loginViewModel.getState();
         loginState.setUsernameError(error);
         loginViewModel.firePropertyChanged();
+        JOptionPane.showMessageDialog(null, error, "Login Error", JOptionPane.ERROR_MESSAGE);
     }
 }
