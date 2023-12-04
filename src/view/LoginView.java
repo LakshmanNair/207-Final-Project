@@ -1,6 +1,5 @@
 package view;
 
-import app.Application;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
@@ -59,13 +58,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             }
         });
 
-        logIn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                Application.showChat(loginViewModel.getState().getUsername());
-
-            }
-        });
-
         newAcc.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 loginController.switchToSignup();
@@ -120,7 +112,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override

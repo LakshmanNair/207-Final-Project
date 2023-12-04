@@ -94,7 +94,6 @@ package view;
 import entity.User;
 import interface_adapter.PrivateChat.PrivateChatController;
 import data_access.CreateAccountDataAccessObject;
-import interface_adapter.logged_in.LoggedInState;
 
 import javax.jms.JMSException;
 import javax.swing.*;
@@ -106,7 +105,6 @@ public class PrivateChatView extends JFrame implements ChatView {
     private JTextField recipientField; // For entering the recipient's username
     private JButton sendButton;
     private PrivateChatController controller;
-    private LoggedInState loggedInState;
     private CreateAccountDataAccessObject createAccountDataAccessObject;
 
     public PrivateChatView() {

@@ -4,169 +4,63 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import app.Application;
+import entity.User;
+import interface_adapter.login.MenuState;
 
-//public class MenuScreen {
-//
-//    public static void createAndShowGUI() {
-//        // Creating the frame
-//        JFrame frame = new JFrame("Chat Application");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(400, 200);
-//
-//        // Creating the panel
-//        JPanel panel = new JPanel();
-//        frame.add(panel);
-//
-//        // Layout manager
-//        panel.setLayout(new FlowLayout());
-//
-//        // Creating buttons
-//        JButton privateChatButton = new JButton("Private Chat");
-//        JButton groupChatButton = new JButton("Group Chat");
-//
-//        // Adding action listeners to buttons
-//        privateChatButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                // Logic to open private chat
-//                JOptionPane.showMessageDialog(frame, "Private Chat button clicked");
-//            }
-//        });
-//
-//        groupChatButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                // Logic to open group chat
-//                JOptionPane.showMessageDialog(frame, "Group Chat button clicked");
-//            }
-//        });
-//
-//        // Adding buttons to the panel
-//        panel.add(privateChatButton);
-//        panel.add(groupChatButton);
-//
-//        // Setting the frame visibility
-//        frame.setVisible(true);
-//    }
-//
-//    public static void main(String[] args) {
-//        // Scheduling this for the event dispatch thread (EDT)
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
-//    }
-//
-//}
-//
-
-//public class MenuScreen {
-//    // Buttons as instance variables
-//    private JButton privateChatButton;
-//    private JButton groupChatButton;
-//
-//    public MenuScreen() {
-//        createAndShowGUI();
-//    }
-//
-//    public void createAndShowGUI() {
-//        // Creating the frame
-//        JFrame frame = new JFrame("Chat Application");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setSize(400, 200);
-//
-//        // Creating the panel
-//        JPanel panel = new JPanel();
-//        frame.add(panel);
-//
-//        // Layout manager
-//        panel.setLayout(new FlowLayout());
-//
-//        // Creating buttons
-//        privateChatButton = new JButton("Private Chat");
-//        groupChatButton = new JButton("Group Chat");
-//
-//        //need listener for button in createGUI
-//
-//
-//        // Adding buttons to the panel
-//        panel.add(privateChatButton);
-//        panel.add(groupChatButton);
-//
-//        // Setting the frame visibility
-//        frame.setVisible(true);
-//    }
-//
-//    public void setPrivateChatButtonListener(ActionListener listener) {
-//        privateChatButton.addActionListener(listener);
-//    }
-//
-//    public void setGroupChatButtonListener(ActionListener listener) {
-//        groupChatButton.addActionListener(listener);
-//    }
-//}
-
-public class MenuScreen {
+public class MenuScreen extends JPanel implements ActionListener, PropertyChangeListener {
     // Buttons as instance variables
+    public final String viewName = "MenuScreen";
     private JButton privateChatButton;
     private JButton groupChatButton;
-    private JButton editAccountInfoButton;
+
+    private JLabel usernameLabel;
+    private final String username;
 
     public MenuScreen() {
+        this.username = MenuState.getUsername();
         createAndShowGUI();
     }
 
     public void createAndShowGUI() {
-        // Creating the frame
-        JFrame frame = new JFrame("Chat Application");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 200);
-
-        // Creating the panel
-        JPanel panel = new JPanel();
-        frame.add(panel);
 
         // Layout manager
-        panel.setLayout(new FlowLayout());
+        this.setLayout(new FlowLayout());
+
+        // Updating username label
+        usernameLabel = new JLabel();
+        usernameLabel.setText(this.username);
 
         // Creating buttons
         privateChatButton = new JButton("Private Chat");
         groupChatButton = new JButton("Group Chat");
-        editAccountInfoButton = new JButton("Edit Account Information");
 
         // Adding action listeners to buttons
         privateChatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(frame, "Private Chat Button Clicked");
-
-//                Application.showChat();
+                System.out.println("Private Chat Button Clicked");
+                Application.showPrivateChat();
             }
         });
 
         groupChatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Application.showMenuScreen();
-            }
-        });
-
-        editAccountInfoButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                Application.editAccountInfoScreen();
+                System.out.println("Group Chat Button Clicked");
+                Application.showGroupChat();
             }
         });
 
         // Adding buttons to the panel
-        panel.add(privateChatButton);
-        panel.add(groupChatButton);
-        panel.add(editAccountInfoButton);
+        this.add(privateChatButton);
+        this.add(groupChatButton);
 
-        // Setting the frame visibility
-        frame.setVisible(true);
+//        // Setting the frame visibility
+//        frame.setVisible(true);
     }
     public void setPrivateChatButtonListener(ActionListener listener) {
         privateChatButton.addActionListener(listener);
@@ -174,8 +68,14 @@ public class MenuScreen {
     public void setGroupChatButtonListener(ActionListener listener) {
         groupChatButton.addActionListener(listener);
     }
-    public void setEditAccountInfoButtonListener(ActionListener listener) {
-        editAccountInfoButton.addActionListener(listener);
+
+    public void actionPerformed(ActionEvent evt) {
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+//        LoggedInState state = (LoggedInState) evt.getNewValue();
+//        username.setText(state.getUsername());
     }
 }
 

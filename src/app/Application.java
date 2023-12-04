@@ -13,7 +13,6 @@ import interface_adapter.editAccountInfo.EditAccountInfoPresenter;
 import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
 import interface_adapter.groupChat.GroupChatState;
 import interface_adapter.groupChat.GroupChatViewModel;
-import interface_adapter.logged_in.LoggedInViewModel;
 import org.apache.activemq.ActiveMQConnection;
 import use_case.edit_account_information.EditInteractor;
 import use_case.send_message.SendMessageInteractor;
@@ -71,7 +70,24 @@ import java.awt.*;
 //    }
 //}
 
-
+// Daniel's
+//public class Application extends JPanel {
+//    public static void showPrivateChat() {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+//                    SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+//                    PrivateChatView chatView = new PrivateChatView();
+//                    PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
+//                    PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("test", "pass"), apiAccessObject, chatView);
+//
+//                    sendMessageInteractor.setOutputBoundary(chatPresenter);
+//                    chatView.setController(chatController);
+//                    chatView.setVisible(true);
+//                } catch (JMSException ex) {
+//                    throw new RuntimeException(ex);
+//                }
 public class Application {
     public static void showChat(String username) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -127,7 +143,13 @@ public class Application {
             }
         });
     }
-
-    // Main method or other methods...
+    public static void showGroupChat() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                // Logic to open group chat
+            };
+        });
+    };
 }
+
 
