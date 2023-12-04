@@ -90,6 +90,11 @@ public class PrivateChatController {
     }
 
     public void startChatSession(String username) {
+        try {
+            apiAccessObject.createChatSession(currentUser.getUsername(), username);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, username, chatView);
         messageWorker.execute();
     }
