@@ -9,7 +9,6 @@ import java.beans.PropertyChangeListener;
 
 import app.Application;
 import entity.User;
-import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.login.MenuState;
 
 public class MenuScreen extends JPanel implements ActionListener, PropertyChangeListener {
@@ -20,8 +19,6 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
 
     private JLabel usernameLabel;
     private final String username;
-
-//    private final MenuGetUser user;
 
     public MenuScreen() {
         this.username = MenuState.getUsername();
@@ -45,16 +42,16 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
         privateChatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                JOptionPane.showMessageDialog(frame, "Private Chat Button Clicked");
-//
-                Application.showChat();
+                System.out.println("Private Chat Button Clicked");
+                Application.showPrivateChat();
             }
         });
 
         groupChatButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                Application.showMenuScreen();
+                System.out.println("Group Chat Button Clicked");
+                Application.showGroupChat();
             }
         });
 
@@ -73,7 +70,6 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
     }
 
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override

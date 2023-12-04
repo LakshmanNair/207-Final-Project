@@ -60,37 +60,33 @@ import javax.swing.*;
 //}
 
 
-public class Application {
-    public static void showChat() {
+public class Application extends JPanel {
+    public static void showPrivateChat() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                MenuScreen menuScreen = new MenuScreen();
-                menuScreen.setPrivateChatButtonListener(e -> {
-                    try {
-                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
-                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-                        PrivateChatView chatView = new PrivateChatView();
-                        PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("test", "pass"), apiAccessObject, chatView);
+                try {
+                    APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
+                    SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
+                    PrivateChatView chatView = new PrivateChatView();
+                    PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
+                    PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("test", "pass"), apiAccessObject, chatView);
 
-                        sendMessageInteractor.setOutputBoundary(chatPresenter);
-                        chatView.setController(chatController);
-                        chatView.setVisible(true);
-                    } catch (JMSException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-                menuScreen.setGroupChatButtonListener(e -> {
-                    // Logic to open group chat
-                });
-
-                // Show the MenuScreen
-//                menuScreen.createAndShowGUI();
+                    sendMessageInteractor.setOutputBoundary(chatPresenter);
+                    chatView.setController(chatController);
+                    chatView.setVisible(true);
+                } catch (JMSException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
+    public static void showGroupChat() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                    // Logic to open group chat
+                };
+            });
+        };
+    }
 
-    // Main method or other methods...
-}
 

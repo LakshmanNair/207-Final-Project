@@ -21,5 +21,8 @@ public class CreateAccountController {
 //            viewManager.switchToLoginView();
 //        }
     }
+    public void switchToLogin() {
+        viewManager.setActiveView("LoginView");
+    }
 }
 
