@@ -112,6 +112,7 @@ public class MenuScreen {
     // Buttons as instance variables
     private JButton privateChatButton;
     private JButton groupChatButton;
+    private JButton editAccountInfoButton;
 
     public MenuScreen() {
         createAndShowGUI();
@@ -133,6 +134,7 @@ public class MenuScreen {
         // Creating buttons
         privateChatButton = new JButton("Private Chat");
         groupChatButton = new JButton("Group Chat");
+        editAccountInfoButton = new JButton("Edit Account Information");
 
         // Adding action listeners to buttons
         privateChatButton.addActionListener(new ActionListener() {
@@ -151,9 +153,17 @@ public class MenuScreen {
             }
         });
 
+        editAccountInfoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                Application.editAccountInfoScreen();
+            }
+        });
+
         // Adding buttons to the panel
         panel.add(privateChatButton);
         panel.add(groupChatButton);
+        panel.add(editAccountInfoButton);
 
         // Setting the frame visibility
         frame.setVisible(true);
@@ -163,6 +173,9 @@ public class MenuScreen {
     }
     public void setGroupChatButtonListener(ActionListener listener) {
         groupChatButton.addActionListener(listener);
+    }
+    public void setEditAccountInfoButtonListener(ActionListener listener) {
+        editAccountInfoButton.addActionListener(listener);
     }
 }
 

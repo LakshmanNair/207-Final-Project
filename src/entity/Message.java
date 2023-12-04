@@ -14,7 +14,7 @@ public class Message {
         this.sender = user;
     }
 
-    private User getUser() {
+    protected User getUser() {
         return sender;
     }
     public String getContent() {

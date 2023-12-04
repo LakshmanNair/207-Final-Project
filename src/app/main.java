@@ -1,12 +1,14 @@
 package app;
 
 import data_access.APIAccessObject;
+import data_access.AccountFileDataAccessObject;
 import entity.User;
 import entity.UserFactory;
 import interface_adapter.CreateAccount.CreateAccountViewModel;
 import interface_adapter.PrivateChat.PrivateChatController;
 import interface_adapter.PrivateChat.PrivateChatPresenter;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.editAccountInfo.EditAccountInfoViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginViewModel;
 import org.apache.activemq.ActiveMQConnection;
@@ -56,7 +58,7 @@ public class main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
         views.add(loginView, loginView.viewName);
 
-        viewManagerModel.setActiveView(createAccountView.viewName);
+        viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();
 
         //need to create chat session

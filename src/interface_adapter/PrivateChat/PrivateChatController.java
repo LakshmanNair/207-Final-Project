@@ -53,10 +53,9 @@ public class PrivateChatController {
     }
 
 
-
     private void startChatSession() {
         // Start ReceiveMessageWorker to listen for messages from the recipient
-        ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, recipient.getUsername(), chatView);
+        ReceiveMessageWorker messageWorker = new ReceiveMessageWorker(apiAccessObject, username, chatView);
         messageWorker.execute();
     }
 }
