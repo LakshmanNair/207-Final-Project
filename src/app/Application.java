@@ -73,6 +73,22 @@ import java.awt.*;
 
 // Daniel's
 public class Application extends JPanel {
+    public static void showEditAccountInfo() {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                AccountFileDataAccessObject editAccountInfoDataAccessObject = new AccountFileDataAccessObject("./users.csv");
+                EditAccountInfoViewModel editAccountInfoViewModel = new EditAccountInfoViewModel();
+                EditInteractor editInteractor = new EditInteractor(editAccountInfoDataAccessObject);
+                EditAccountInfoView editAccountInfoView = new EditAccountInfoView(editAccountInfoViewModel);
+                EditAccountInfoController editAccountInfoController = new EditAccountInfoController(editInteractor);
+                EditAccountInfoPresenter editPresenter = new EditAccountInfoPresenter(editAccountInfoView);
+                editInteractor.setOutputBoundary(editPresenter);
+                editAccountInfoView.setController(editAccountInfoController);
+                editAccountInfoView.pack();
+                editAccountInfoView.setVisible(true);
+            }
+        });
+    }
     public static void showPrivateChat(String username) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -93,91 +109,6 @@ public class Application extends JPanel {
                 }
             }
 
-//     public static void showGroupChat()
-
-
-//public class Application {
-//    public static void showChat(String username) {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                MenuScreen menuScreen = new MenuScreen();
-//                menuScreen.setPrivateChatButtonListener(e -> {
-//                    try {
-//                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
-//                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-//                        PrivateChatView chatView = new PrivateChatView();
-//                        PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-//                        PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User("tester1", "pass"), new User("tester2", "pass"), apiAccessObject, chatView);
-//
-//                        sendMessageInteractor.setOutputBoundary(chatPresenter);
-//                        chatView.setController(chatController);
-//                        chatView.setVisible(true);
-//                    } catch (JMSException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                });
-//
-//                menuScreen.setGroupChatButtonListener(e -> {
-//                    try {
-//                        APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
-//                        SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-//
-//                        GroupChatState groupChatState=new GroupChatState(new User(username,""));
-//                        GroupChatViewModel groupChatViewModel=new GroupChatViewModel(groupChatState);
-//                        GroupChatView groupChatView=GroupChatCaseFactory.create(groupChatViewModel,sendMessageInteractor);
-//                        groupChatView.setVisible(true);
-//                    } catch (JMSException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    // Logic to open group chat
-//                });
-//
-//                menuScreen.setEditAccountInfoButtonListener(e -> {
-//                    AccountFileDataAccessObject editAccountInfoDataAccessObject = new AccountFileDataAccessObject("./users.csv");
-//                    EditAccountInfoViewModel editAccountInfoViewModel = new EditAccountInfoViewModel();
-//                    EditInteractor editInteractor = new EditInteractor(editAccountInfoDataAccessObject);
-//                    EditAccountInfoView editAccountInfoView = new EditAccountInfoView(editAccountInfoViewModel);
-//                    EditAccountInfoController editAccountInfoController = new EditAccountInfoController(editInteractor);
-//                    EditAccountInfoPresenter editPresenter = new EditAccountInfoPresenter(editAccountInfoView);
-//
-//                    editInteractor.setOutputBoundary(editPresenter);
-//                    editAccountInfoView.setController(editAccountInfoController);
-//                    editAccountInfoView.pack();
-//                    editAccountInfoView.setVisible(true);
-//                });
-//
-//                // Show the MenuScreen
-////                menuScreen.createAndShowGUI();
-//            }
-//        });
-//    }
-//    public class Application {
-//        public static void showChat(String username) {
-//            SwingUtilities.invokeLater(new Runnable() {
-//                public void run() {
-//                    MenuScreen menuScreen = new MenuScreen();
-//                    menuScreen.setPrivateChatButtonListener(e -> {
-//                        try {
-//                            APIAccessObject apiAccessObject = new APIAccessObject(ActiveMQConnection.DEFAULT_BROKER_URL);
-//                            SendMessageInteractor sendMessageInteractor = new SendMessageInteractor(apiAccessObject);
-//                            PrivateChatView chatView = new PrivateChatView();
-//                            PrivateChatPresenter chatPresenter = new PrivateChatPresenter(chatView);
-//                            PrivateChatController chatController = new PrivateChatController(sendMessageInteractor, new User(username, "pass"), new User("tester2", "pass"), apiAccessObject, chatView);
-//
-//                            sendMessageInteractor.setOutputBoundary(chatPresenter);
-//                            chatView.setController(chatController);
-//                            ReceiveMessageWorker receiveMessageWorker = new ReceiveMessageWorker(apiAccessObject, "tester2", chatView);
-//                            chatView.setVisible(true);
-//                        } catch (JMSException ex) {
-//                            throw new RuntimeException(ex);
-//                        }
-//                    });
-//
-//                    public static void showGroupChat() {
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                // Logic to open group chat
-//            };
         });
     };
 }

@@ -21,6 +21,7 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
     private JButton privateChatButton;
     private JButton groupChatButton;
     private JButton receiveMessageButton;
+    private JButton editAccountInfoButton;
     private JLabel usernameLabel;
     private final String username;
     private APIAccessObject apiAccessObject;
@@ -45,6 +46,7 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
         privateChatButton = new JButton("Private Chat");
         groupChatButton = new JButton("Group Chat");
         receiveMessageButton = new JButton("Receive Message");
+        editAccountInfoButton = new JButton("Edit Account Info");
 
         // Adding action listeners to buttons
         privateChatButton.addActionListener(new ActionListener() {
@@ -72,11 +74,19 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
 //                Application.showGroupChat();
             }
         });
+        editAccountInfoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Edit Account Info Button Clicked");
+                Application.showEditAccountInfo();
+            }
+        });
 
         // Adding buttons to the panel
         this.add(privateChatButton);
         this.add(groupChatButton);
         this.add(receiveMessageButton);
+        this.add(editAccountInfoButton);
 
     }
     public void setPrivateChatButtonListener(ActionListener listener) {
@@ -88,7 +98,9 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
 
     public void actionPerformed(ActionEvent evt) {
     }
-
+    public void setEditAccountInfoButtonListener(ActionListener listener) {
+        editAccountInfoButton.addActionListener(listener);
+    }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 //        LoggedInState state = (LoggedInState) evt.getNewValue();
