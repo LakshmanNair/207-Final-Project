@@ -76,6 +76,9 @@ public class APIAccessObject {
 
     // Method to create a chat session between two users
 // Method to create a chat session between two users
+    public boolean contain(String user1,String user2){
+        return producerMap.containsKey(user1)&&producerMap.containsKey(user2);
+    }
     public void createChatSession(User sender, User receiver) throws JMSException {
         String chatQueueName = "Presentation" + "_" + receiver.getUsername();
         Destination destination = this.session.createQueue(chatQueueName);
