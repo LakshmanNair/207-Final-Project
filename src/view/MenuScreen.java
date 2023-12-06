@@ -71,7 +71,7 @@ public class MenuScreen extends JPanel implements ActionListener, PropertyChange
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Group Chat Button Clicked");
-//                Application.showGroupChat();
+                Application.showGroupChat(username);
             }
         });
         editAccountInfoButton.addActionListener(new ActionListener() {
