@@ -27,9 +27,9 @@ import java.util.Map;
 public class ReceiveMessageWorker extends SwingWorker<Void, Void> {
     private final APIAccessObject apiAccessObject;
     private final String recipientUsername; // Username of the user receiving messages
-    private final PrivateChatView chatView; // Chat view associated with the recipient
+    private final ChatView chatView; // Chat view associated with the recipient
 
-    public ReceiveMessageWorker(APIAccessObject apiAccessObject, String recipientUsername, PrivateChatView chatView) {
+    public ReceiveMessageWorker(APIAccessObject apiAccessObject, String recipientUsername, ChatView chatView) {
         this.apiAccessObject = apiAccessObject;
         this.recipientUsername = recipientUsername;
         this.chatView = chatView;
