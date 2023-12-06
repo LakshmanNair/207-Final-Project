@@ -10,7 +10,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupChatViewModel extends ViewModel {
+public class GroupChatViewModel extends ViewModel{
     public static final String TITLE_LABEL = "Group Chat View";
 
     private GroupChatState state;
@@ -25,6 +25,7 @@ public class GroupChatViewModel extends ViewModel {
         super("group chat");
         users=new ArrayList<>();
         state=groupChatState;
+        chatHistory="";
     }
 
     public void addUser(User u){
@@ -73,5 +74,6 @@ public class GroupChatViewModel extends ViewModel {
     public void addHistory(String message){
         chatHistory=chatHistory+message;
     }
+
 
 }

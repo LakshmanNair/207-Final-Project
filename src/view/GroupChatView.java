@@ -3,6 +3,9 @@ package view;
 import interface_adapter.groupChat.GroupChatController;
 import interface_adapter.groupChat.GroupChatViewModel;
 import entity.User;
+import use_case.send_message.SendMessageOutputBoundary;
+import use_case.send_message.SendMessageOutputData;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -11,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class GroupChatView extends JFrame implements ChatView {
+public class GroupChatView extends JFrame implements ChatView, SendMessageOutputBoundary {
     public final String viewName = GroupChatViewModel.TITLE_LABEL;
     private JTextArea receivers;
 
@@ -52,14 +55,14 @@ public class GroupChatView extends JFrame implements ChatView {
 
         // 创建底部面板，包含消息输入框和发送按钮
         JPanel bottomPanel = new JPanel(new BorderLayout());
-            bottomPanel.add(messageField, BorderLayout.CENTER);
-            bottomPanel.add(sendButton, BorderLayout.EAST);
+        bottomPanel.add(messageField, BorderLayout.CENTER);
+        bottomPanel.add(sendButton, BorderLayout.EAST);
 
         // 添加底部面板到窗口底部
         add(bottomPanel, BorderLayout.SOUTH);
 
         // 注册发送按钮的点击事件监听器
-            sendButton.addActionListener(new ActionListener() {
+        sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!receivers.getText().isEmpty() && !messageField.getText().isEmpty()){
@@ -67,7 +70,7 @@ public class GroupChatView extends JFrame implements ChatView {
                     for (String user : receivers.getText().split(";")) {
                         model.addUser(new User(user,""));
                     }
-
+                    //controller.startChatSession();
                     controller.sendMessage(messageField.getText());
                     chatArea.setText(model.getChatHistory());
                     messageField.setText(""); // 清空消息输入框
@@ -83,14 +86,23 @@ public class GroupChatView extends JFrame implements ChatView {
         setLocationRelativeTo(null); // 将窗口置于屏幕中央
     }
 
+
     @Override
     public void displayMessage(String message) {
-        SwingUtilities.invokeLater(() -> model.setChatHistory(model.getChatHistory()+message + "\n"));
+        SwingUtilities.invokeLater(() -> model.addHistory(message + "\n"));
+        chatArea.setText(model.getChatHistory());
     }
 
     @Override
     public void displayError(String error) {
+        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE));
+    }
 
+    @Override
+    public void presentMessageSendingResult(SendMessageOutputData sendMessageOutputData) {
+        if (!sendMessageOutputData.isSuccess()) {
+            displayError("Failed to send message: " + sendMessageOutputData.getMessage());
+        }
     }
 }
 

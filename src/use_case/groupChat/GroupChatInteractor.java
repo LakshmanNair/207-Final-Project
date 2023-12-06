@@ -34,7 +34,6 @@ public class GroupChatInteractor implements GroupChatInputBoundary {
 
 
         this.model.addHistory(sb.toString());
-        // todo 通知其它人发送了消息
         for (User user : model.getUsers()) {
             SendMessageInputData inputData = new SendMessageInputData(groupChatInputData.getMessage(), model.getState().getUser(), user);
             sendMessageInteractor.sendMessage(inputData);

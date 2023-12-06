@@ -1,5 +1,6 @@
 package app;
 
+import data_access.APIAccessObject;
 import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.groupChat.GroupChatController;
@@ -20,22 +21,22 @@ public class GroupChatCaseFactory {
 
     public static GroupChatView create(
             GroupChatViewModel groupChatViewModel,
-            SendMessageInputBoundary sendMessageInputBoundary) {
+            SendMessageInputBoundary sendMessageInputBoundary,
+            APIAccessObject apiAccessObject) {
 
-        GroupChatController controller = createGroupChatUseCase(
-                groupChatViewModel,
-                sendMessageInputBoundary);
+        GroupChatController controller = createGroupChatUseCase(groupChatViewModel,sendMessageInputBoundary,apiAccessObject);
         return new GroupChatView(groupChatViewModel, controller);
     }
 
     private static GroupChatController createGroupChatUseCase(
             GroupChatViewModel groupChatViewModel,
-            SendMessageInputBoundary sendMessageInputBoundary){
+            SendMessageInputBoundary sendMessageInputBoundary,
+            APIAccessObject apiAccessObject){
 
         GroupChatInputBoundary groupChatInteractor = new GroupChatInteractor(
                 groupChatViewModel,
                 sendMessageInputBoundary);
 
-        return new GroupChatController(groupChatViewModel, groupChatInteractor);
+        return new GroupChatController(groupChatViewModel, groupChatInteractor,apiAccessObject);
     }
 }
